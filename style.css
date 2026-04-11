@@ -1,0 +1,72 @@
+/* style.css */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Evita rolagem da página inteira */
+    font-family: 'Courier New', Courier, monospace; /* Monospaçada style terminal */
+}
+
+/* Simulação da Área de Trabalho (Debian-style color) */
+#desktop {
+    background-color: #2D353C; /* Azul-acinzentado Debian */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* Janela do Terminal */
+#terminal-window {
+    width: 80%;
+    height: 60%;
+    background-color: #1c1c1c; /* Preto suave */
+    border-radius: 6px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Barra de Título */
+#terminal-titlebar {
+    background-color: #333;
+    padding: 5px 10px;
+    color: #ccc;
+    font-size: 14px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Corpo do Terminal */
+#terminal-body {
+    padding: 15px;
+    color: #f0f0f0; /* Texto claro */
+    font-size: 16px;
+    line-height: 1.4;
+    flex-grow: 1; /* Preenche o resto da janela */
+    overflow-y: auto; /* Permite rolagem dentro do terminal se o texto for grande */
+}
+
+/* Prompt */
+.prompt-user { color: #8AE234; /* Verde Terminal */ }
+.prompt-separator { color: #f0f0f0; }
+.prompt-dir { color: #729FCF; /* Azul Diretório */ }
+
+/* Diretórios no LS (Blue) */
+.directory {
+    color: #729FCF;
+    font-weight: bold;
+    margin-right: 15px;
+    display: inline-block; /* Alinha na horizontal */
+}
+
+/* Cursor piscante */
+.cursor {
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
