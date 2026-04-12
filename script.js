@@ -1,85 +1,89 @@
 /* script.js */
 const terminalHistory = document.getElementById('terminal-history');
 const terminalTyping = document.getElementById('terminal-typing');
+const promptLine = document.getElementById('terminal-prompt-line');
+const bootScreen = document.getElementById('boot-screen');
+const portfolioScreen = document.getElementById('portfolio-screen');
 
-// Conteúdo fictício das seções. SUBSTITUA PELOS SEUS DADOS:
-const portfolioData = {
-    'Dados_do_Usuario': '[Nome: Gustavo Henrique], [Cargo: Desenvolvedor], [Local: Hortolândia - SP]',
-    'Formacao': '[Análise e Desenvolvimento de Sistemas (FATEC) - 2020-2023]',
-    'Experiencias_Profissionais': '[Dev Jr. @ Tech Solutions (2023-Atual)], [Estagiário Backend @ StartUp XYZ (2022-2023)]',
-    'Competencias': '[JS, React, Node.js], [Linux, Docker, Python], [SQL, NoSQL]'
-};
+const TYPING_SPEED = 40;
 
-// Configurações da simulação
-const TYPING_SPEED = 70; // Velocidade da digitação em ms
-let animationComplete = false;
-
-// Fase 1: Simulação automática
-async function runAutoSimulation() {
-    // 1. Simula digitação de SSH
-    await typeText("ssh gustavo@henrique");
-    appendLineToHistory(`gustavo@debian:~$ ssh gustavo@henrique`);
-    terminalTyping.innerHTML = ""; // Limpa a linha de digitação
-
-    // Delay de conexão (0.5s)
-    await delay(500);
-
-    // 2. Atualiza o prompt para o novo host
-    appendLineToHistory(`gustavo@henrique:~$ `);
-
-    // 3. Simula digitação de LS
-    await typeText("ls");
-    appendLineToHistory(`gustavo@henrique:~$ ls`);
-    terminalTyping.innerHTML = ""; // Limpa a linha de digitação
-
-    // 4. Exibe as pastas (ls output)
-    appendDirectoriesToHistory();
-
-    // 5. Finaliza a fase automática
-    animationComplete = true;
-    appendLineToHistory(`<span class="prompt-user">gustavo@henrique</span><span class="prompt-separator">:</span><span class="prompt-dir">~$</span> <span class="cursor">_</span>`);
-    
-    // Mostra o prompt final interativo
-    document.getElementById('terminal-prompt-line').style.display = 'none';
+// Pega a data e hora atual do sistema no formato Linux
+function getCurrentDateTime() {
+    const now = new Date();
+    // Gera um formato parecido com: "Sat Apr 11 23:29:05 -03 2026"
+    return now.toString().replace(/\s*\(.*\)/, ''); 
 }
 
-// Fase 2: Interação do Usuário (Monitora o ENTER)
-window.addEventListener('keydown', (event) => {
-    // Se a animação acabou e a pessoa apertou Enter
-    if (animationComplete && event.key === 'Enter') {
-        runEnterAction();
-    }
-});
-
-function runEnterAction() {
-    // Remove o prompt provisório da animação
-    terminalHistory.lastElementChild.remove();
+async function runIntro() {
+    // 1. Comando SSH
+    await typeText(terminalTyping, "ssh portifolio@gustavo");
+    appendLineToHistory(`<span class="prompt-user">user@linux</span><span class="prompt-separator">:</span><span class="prompt-dir">~$</span> ssh portifolio@gustavo`);
     
-    // Simula a saída do comando LS
-    let outputHtml = '';
-    for (const [section, content] of Object.entries(portfolioData)) {
-        outputHtml += `<div class="directory">${section}:</div> ${content}\n`;
-    }
-    appendLineToHistory(outputHtml);
+    // Limpa a linha atual e esconde para simular pedido de senha
+    terminalTyping.innerHTML = "";
+    promptLine.style.display = 'none'; 
     
-    // Mostra o prompt final interativo
-    appendLineToHistory(`<span class="prompt-user">gustavo@henrique</span><span class="prompt-separator">:</span><span class="prompt-dir">~$</span> `);
+    await delay(300);
     
-    // Impede o Enter de ser processado novamente
-    animationComplete = false;
+    // 2. Pedido de senha
+    const passwordLine = document.createElement('div');
+    passwordLine.innerHTML = `portifolio@gustavo's password: <span class="cursor">_</span>`;
+    terminalHistory.appendChild(passwordLine);
+    
+    // Finge que está esperando a digitação da senha
+    await delay(1200); 
+    passwordLine.querySelector('.cursor').remove();
+    
+    // 3. Processando login (...)
+    appendLineToHistory(`...`);
+    await delay(600);
+    
+    // 4. Exibe a mensagem de boas vindas (MOTD)
+    const loginTime = getCurrentDateTime();
+    const motd = `
+<br>Welcome to Portfolio (GHRA/Linux 5.15.0-XX-generic x86_64)<br><br>
+&nbsp;* Documentation:&nbsp;&nbsp;<a href="https://linkedin.com/in/gustavo-araújo-759592191" style="color:#729FCF; text-decoration:none;">linkedin.com/in/gustavo-araújo-759592191</a><br>
+&nbsp;* Management:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:ghstavo.henrique@hotmail.com" style="color:#729FCF; text-decoration:none;">ghstavo.henrique@hotmail.com</a><br><br>
+Last login: ${loginTime}
+<br><br>`;
+    
+    appendLineToHistory(motd);
+    
+    // Deixa a tela visível tempo suficiente para a pessoa ler
+    await delay(2500); 
+    
+    // 5. Inicia a transição para a tela final
+    transitionToPortfolio();
 }
 
+function transitionToPortfolio() {
+    // Aplica opacidade 0 no terminal (fade out)
+    bootScreen.style.opacity = '0';
+    
+    // Aguarda o fade out terminar (1 segundo definido no CSS)
+    setTimeout(() => {
+        // Esconde o terminal completamente
+        bootScreen.classList.add('hidden');
+        
+        // Remove o display:none da tela do portfólio
+        portfolioScreen.classList.remove('hidden');
+        
+        // Um pequeno delay para o navegador registrar a mudança antes do fade in
+        setTimeout(() => {
+            portfolioScreen.classList.add('visible');
+        }, 50);
+        
+    }, 1000); 
+}
 
-// --- Funções Auxiliares (Não altere abaixo) ---
-
-// Digita texto caractere por caractere
-function typeText(text) {
+// Funções Auxiliares
+function typeText(element, text) {
     return new Promise((resolve) => {
         let currentText = '';
         let index = 0;
         const intervalId = setInterval(() => {
             currentText += text[index];
-            terminalTyping.textContent = currentText;
+            element.textContent = currentText;
             index++;
             if (index === text.length) {
                 clearInterval(intervalId);
@@ -89,26 +93,16 @@ function typeText(text) {
     });
 }
 
-// Adiciona uma linha ao histórico
 function appendLineToHistory(htmlContent) {
     const line = document.createElement('div');
     line.innerHTML = htmlContent;
+    line.style.marginBottom = "3px";
     terminalHistory.appendChild(line);
 }
 
-// Formata e adiciona os diretórios (ls)
-function appendDirectoriesToHistory() {
-    let dirHtml = '';
-    for (const sectionName of Object.keys(portfolioData)) {
-        dirHtml += `<span class="directory">${sectionName}</span>`;
-    }
-    appendLineToHistory(dirHtml);
-}
-
-// Cria um delay (pausa)
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-// Inicia a animação quando a página carregar
-runAutoSimulation();
+// Inicia a sequência de animação
+runIntro();

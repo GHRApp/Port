@@ -7,20 +7,126 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="desktop">
+    
+    <canvas id="matrix-canvas"></canvas>
+
+    <div id="boot-screen">
         <div id="terminal-window">
             <div id="terminal-titlebar">
-                <span class="title">gustavo@henrique: ~</span>
+                <span class="title">user@linux: ~</span>
             </div>
             <div id="terminal-body">
                 <div id="terminal-history"></div>
                 <div id="terminal-prompt-line">
-                    <span class="prompt-user">user@debian</span><span class="prompt-separator">:</span><span class="prompt-dir">~$</span>
+                    <span class="prompt-user">user@linux</span><span class="prompt-separator">:</span><span class="prompt-dir">~$</span>
                     <span id="terminal-typing"></span><span class="cursor">_</span>
                 </div>
             </div>
         </div>
     </div>
+
+    <div id="portfolio-screen" class="hidden">
+        
+        <div class="portfolio-container">
+            
+            <section id="home" class="hero-section">
+                <h1>Gustavo Henrique<br><span class="highlight-text">Rodrigues Araujo</span></h1>
+                <p class="subtitle">
+                    Engenheiro de Prompts em constante evolução, transformando ideias em código e soluções reais.<br><br>
+                    Uso IA para acelerar resultados e desenvolvo meu conhecimento para ir além — <strong>evoluindo a cada commit.</strong>
+                </p>
+            </section>
+
+            <hr class="divider">
+
+            <section id="sobre" class="content-section">
+                <h2>👨‍💻 Sobre Mim</h2>
+                <div class="text-block">
+                    <p>Iniciei minha carreira em tecnologia em 2023, motivado por um forte interesse em inovação e resolução de problemas.</p>
+                    <p>Minha primeira experiência foi como Estagiário de Suporte de TI, onde fui promovido a Analista de Suporte Júnior após demonstrar uma postura proativa e sólidas habilidades em troubleshooting técnico.</p>
+                    <p>Buscando evoluir além das operações de suporte, fiz a transição para a área de <strong>Segurança da Informação</strong> — um campo que exige aprendizado contínuo e está totalmente alinhado ao meu compromisso com desenvolvimento pessoal e profissional.</p>
+                    <p>Atualmente, atuo com Segurança da Informação, apoiando equipes como Gestão de Acessos, Red Team, Blue Team e Segurança em Cloud. Tenho contribuído com a organização de processos, suporte a operações de segurança e evolução contínua das práticas do time, enquanto fortaleço minha base em cibersegurança.</p>
+                </div>
+            </section>
+
+            <section id="projetos" class="content-section">
+                <h2>🧠 Projetos</h2>
+                <div class="card">
+                    <h3>🔹 AI Knowledge Agent <span class="badge">Em desenvolvimento</span></h3>
+                    <p>Desenvolvimento de um agente de IA interno com o objetivo de centralizar informações do time e facilitar a busca por conhecimento.</p>
+                    <p><strong>Objetivo:</strong> Reduzir o tempo gasto na busca por informações e aumentar a produtividade do time.</p>
+                    <p><strong>Tecnologias:</strong> Python, APIs de IA, integração com serviços Cloud (em evolução).</p>
+                </div>
+            </section>
+
+            <section id="foco" class="content-section">
+    <h2>☁️ Foco Atual</h2>
+    <p>Atualmente, estou me especializando em Cloud Computing com foco em <strong>Cloud Security na AWS</strong>.</p>
+    <div class="card focus-card">
+        <p>Estudos direcionados para:</p>
+        <ul class="service-icon-list">
+            <li>
+                <img src="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/SecurityIdentityCompliance/WAF.png" alt="AWS WAF" class="service-icon">
+                <span>AWS WAF</span>
+            </li>
+            <li>
+                <img src="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/ManagementGovernance/CloudWatch.png" alt="AWS CloudWatch" class="service-icon">
+                <span>AWS CloudWatch</span>
+            </li>
+            <li>
+                <img src="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/SecurityIdentityCompliance/Shield.png" alt="AWS Shield" class="service-icon">
+                <span>AWS Shield</span>
+            </li>
+        </ul>
+    </div>
+    <p>Busco desenvolver conhecimentos em proteção de aplicações, monitoramento e arquitetura segura em ambientes cloud.</p>
+</section>
+
+            <div class="grid-2col">
+                <section id="tecnologias" class="content-section">
+                    <h2>🛠️ Tecnologias</h2>
+                    <ul class="tech-list">
+                        <li><strong>Frontend:</strong> HTML, CSS, JavaScript</li>
+                        <li><strong>Backend:</strong> Python</li>
+                        <li><strong>Banco de Dados:</strong> SQL</li>
+                        <li><strong>Cloud & Seg:</strong> AWS (WAF, CloudWatch, Shield), Segurança da Informação</li>
+                        <li><strong>Outros:</strong> Linux</li>
+                    </ul>
+                </section>
+
+                <section id="certificacoes" class="content-section">
+                    <h2>📜 Certificações</h2>
+                    <div class="card cert-card">
+                        <p>☁️ AWS Certified Cloud Practitioner</p>
+                    </div>
+                </section>
+            </div>
+
+            <section id="objetivo" class="content-section">
+                <h2>🎯 Objetivo</h2>
+                <div class="text-block highlight-block">
+                    <p>Atuar como profissional de Cloud com foco em Segurança, contribuindo para a construção de ambientes seguros, escaláveis e resilientes, enquanto continuo evoluindo tecnicamente e ampliando meu impacto.</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="contato" class="content-section">
+                <h2>📬 Contato</h2>
+                <div class="contact-links">
+                    <a href="https://linkedin.com/in/gustavo-araújo-759592191" target="_blank" class="contact-btn">LinkedIn</a>
+                    <a href="mailto:ghstavo.henrique@hotmail.com" class="contact-btn">E-mail</a>
+                </div>
+            </section>
+            
+            <footer>
+                <p>Gustavo Henrique © 2026 - Desenvolvido com muita curiosidade e café.</p>
+            </footer>
+
+        </div>
+    </div>
+
     <script src="script.js"></script>
+    <script src="matrix.js"></script>
 </body>
 </html>
