@@ -121,6 +121,7 @@ body, html {
 /* Destaque no sobrenome e nos títulos */
 .highlight-text, h2 {
     background: linear-gradient(90deg, #8AE234, #729FCF);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
