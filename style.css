@@ -296,3 +296,214 @@ footer {
     color: #fff;
     font-size: 1rem;
 }
+
+/* Botão flutuante */
+#ai-agent-toggle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #729FCF, #8AE234);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,255,0,0.3);
+    z-index: 100;
+    transition: transform 0.3s;
+}
+
+#ai-agent-toggle:hover { transform: scale(1.1); }
+
+#agent-icon { width: 35px; height: 35px; }
+
+/* Janela de Chat */
+#ai-agent-window {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 320px;
+    height: 400px;
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.hidden-agent { display: none !important; }
+
+#agent-header {
+    background-color: #161b22;
+    padding: 10px 15px;
+    border-bottom: 1px solid #30363d;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #8AE234;
+}
+
+#agent-chat {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    font-size: 0.9rem;
+    color: #c9d1d9;
+}
+
+.bot-msg, .user-msg {
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    max-width: 85%;
+}
+
+.bot-msg { background-color: #21262d; align-self: flex-start; }
+.user-msg { background-color: #238636; align-self: flex-end; color: white; margin-left: auto; }
+
+#agent-options-area {
+    padding: 10px;
+    border-top: 1px solid #30363d;
+    background-color: #161b22;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Espaço entre os botões */
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.agent-option-btn {
+    background: rgba(114, 159, 207, 0.05);
+    border: 1px solid rgba(114, 159, 207, 0.2);
+    color: #c9d1d9;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.agent-option-btn:hover {
+    background: rgba(114, 159, 207, 0.2);
+    border-color: #729FCF;
+    color: #fff;
+    transform: translateX(5px); /* Dá um efeitinho legal de ir pra frente */
+}
+
+/* Estilo para simular logs de cloud no chat */
+.cloud-log {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+/* === Estilos do Quadro Kanban (Estilo Jira Dark Mode) === */
+.jira-board {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto; /* Permite arrastar para o lado no celular */
+    padding-bottom: 15px;
+    /* Estiliza a barra de rolagem horizontal */
+    scrollbar-width: thin;
+    scrollbar-color: #30363d transparent;
+}
+
+.jira-board::-webkit-scrollbar {
+    height: 8px;
+}
+
+.jira-board::-webkit-scrollbar-thumb {
+    background: #30363d;
+    border-radius: 4px;
+}
+
+.jira-column {
+    background-color: #161b22; /* Fundo cinza escuro padrão GitHub/Jira Dark */
+    border-radius: 8px;
+    min-width: 220px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    border: 1px solid #30363d;
+}
+
+.jira-column-header {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #8b949e;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.issue-count {
+    background-color: #30363d;
+    color: #c9d1d9;
+    border-radius: 12px;
+    padding: 2px 8px;
+    font-size: 0.75rem;
+}
+
+.jira-card {
+    background-color: #21262d;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: #c9d1d9;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.2s, border-color 0.2s;
+    cursor: default;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.jira-card:hover {
+    transform: translateY(-2px);
+    border-color: #729FCF; /* Brilho azul ao passar o mouse */
+}
+
+/* Ícones coloridos simulando os tipos de issues do Jira */
+.jira-icon {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.icon-blue { background-color: #4C9AFF; }   /* Task */
+.icon-green { background-color: #36B37E; }  /* Story */
+.icon-orange { background-color: #FF991F; } /* Epic */
+.icon-purple { background-color: #998DD9; } /* Sub-task */
+.icon-red { background-color: #FF5630; }    /* Bug/Tech */
+.icon-black { background-color: #000; }    /* SO's */
+
+/* === Formatação do Tempo de Experiência nos Cards === */
+.tech-name {
+    flex-grow: 1; /* Empurra o tempo de experiência para a direita */
+    font-weight: 500;
+}
+
+.tech-time {
+    font-size: 0.75rem;
+    color: #8b949e; /* Cinza suave */
+    background-color: rgba(48, 54, 61, 0.6); /* Fundo escuro levemente transparente */
+    padding: 2px 6px;
+    border-radius: 4px;
+    white-space: nowrap; /* Impede que o texto quebre em duas linhas */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}

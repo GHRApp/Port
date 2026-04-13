@@ -7,38 +7,30 @@ const portfolioScreen = document.getElementById('portfolio-screen');
 
 const TYPING_SPEED = 40;
 
-// Pega a data e hora atual do sistema no formato Linux
 function getCurrentDateTime() {
     const now = new Date();
-    // Gera um formato parecido com: "Sat Apr 11 23:29:05 -03 2026"
     return now.toString().replace(/\s*\(.*\)/, ''); 
 }
 
 async function runIntro() {
-    // 1. Comando SSH
     await typeText(terminalTyping, "ssh portifolio@gustavo");
     appendLineToHistory(`<span class="prompt-user">user@linux</span><span class="prompt-separator">:</span><span class="prompt-dir">~$</span> ssh portifolio@gustavo`);
     
-    // Limpa a linha atual e esconde para simular pedido de senha
     terminalTyping.innerHTML = "";
     promptLine.style.display = 'none'; 
     
     await delay(300);
     
-    // 2. Pedido de senha
     const passwordLine = document.createElement('div');
     passwordLine.innerHTML = `portifolio@gustavo's password: <span class="cursor">_</span>`;
     terminalHistory.appendChild(passwordLine);
     
-    // Finge que está esperando a digitação da senha
     await delay(1200); 
     passwordLine.querySelector('.cursor').remove();
     
-    // 3. Processando login (...)
     appendLineToHistory(`...`);
     await delay(600);
     
-    // 4. Exibe a mensagem de boas vindas (MOTD)
     const loginTime = getCurrentDateTime();
     const motd = `
 <br>Welcome to Portfolio (GHRA/Linux 5.15.0-XX-generic x86_64)<br><br>
@@ -49,26 +41,18 @@ Last login: ${loginTime}
     
     appendLineToHistory(motd);
     
-    // Deixa a tela visível tempo suficiente para a pessoa ler
     await delay(2500); 
     
-    // 5. Inicia a transição para a tela final
     transitionToPortfolio();
 }
 
 function transitionToPortfolio() {
-    // Aplica opacidade 0 no terminal (fade out)
     bootScreen.style.opacity = '0';
     
-    // Aguarda o fade out terminar (1 segundo definido no CSS)
     setTimeout(() => {
-        // Esconde o terminal completamente
         bootScreen.classList.add('hidden');
-        
-        // Remove o display:none da tela do portfólio
         portfolioScreen.classList.remove('hidden');
         
-        // Um pequeno delay para o navegador registrar a mudança antes do fade in
         setTimeout(() => {
             portfolioScreen.classList.add('visible');
         }, 50);
@@ -76,7 +60,6 @@ function transitionToPortfolio() {
     }, 1000); 
 }
 
-// Funções Auxiliares
 function typeText(element, text) {
     return new Promise((resolve) => {
         let currentText = '';
@@ -102,6 +85,77 @@ function appendLineToHistory(htmlContent) {
 
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// --- Banco de Dados do Agente ---
+const botData = {
+    "Quais são seus conhecimentos em Cloud?": "Tenho focado fortemente em AWS Cloud Security. Possuo a certificação AWS Certified Cloud Practitioner e estudo ativamente serviços de proteção e monitoramento, como AWS WAF, Shield e CloudWatch, para construir e proteger ambientes escaláveis.",
+    "O que te motiva a estar na área de TI?": "A inovação contínua e a capacidade de resolver problemas complexos. Comecei no Suporte resolvendo problemas técnicos e me apaixonei por entender como a tecnologia funciona por trás das cortinas. Evoluir a cada commit e usar a IA para ir mais longe é o que me move diariamente.",
+    "O que te fez migrar para Segurança?": "A transição ocorreu porque a Segurança da Informação exige um nível de aprendizado contínuo que bate com o meu perfil. No suporte, eu via os problemas; na segurança, atuo proativamente com Gestão de Acessos e Blue/Red Team para evitar que as vulnerabilidades afetem as operações."
+};
+
+// --- Funções do Agente de IA ---
+function toggleAgent() {
+    const window = document.getElementById('ai-agent-window');
+    window.classList.toggle('hidden-agent');
+    
+    const optionsArea = document.getElementById('agent-options-area');
+    if (optionsArea.children.length === 0) {
+        renderBotOptions();
+    }
+}
+
+function renderBotOptions() {
+    const optionsArea = document.getElementById('agent-options-area');
+    optionsArea.innerHTML = ''; 
+    
+    for (const question of Object.keys(botData)) {
+        const btn = document.createElement('button');
+        btn.className = 'agent-option-btn';
+        btn.textContent = question;
+        btn.onclick = () => handleOptionClick(question);
+        optionsArea.appendChild(btn);
+    }
+}
+
+async function handleOptionClick(question) {
+    const optionsArea = document.getElementById('agent-options-area');
+    
+    optionsArea.style.display = 'none'; 
+
+    addChatMessage(question, 'user-msg');
+
+    const botDiv = addChatMessage('...', 'bot-msg');
+    await delay(400);
+    botDiv.innerHTML = `<div class="cloud-log">[AWS-IAM] Validando permissão de leitura... OK</div>`;
+    await delay(600);
+    botDiv.innerHTML += `<div class="cloud-log">[CloudTrail] Consultando histórico do Gustavo...</div>`;
+    await delay(800);
+
+    botDiv.innerHTML = botData[question];
+    scrollToBottomChat();
+
+    await delay(1000); 
+    
+    addChatMessage("Ajudo com algo mais?", 'bot-msg');
+    
+    optionsArea.style.display = 'flex'; 
+    scrollToBottomChat();
+}
+
+function addChatMessage(text, className) {
+    const chat = document.getElementById('agent-chat');
+    const msgDiv = document.createElement('div');
+    msgDiv.className = className;
+    msgDiv.innerHTML = text;
+    chat.appendChild(msgDiv);
+    scrollToBottomChat();
+    return msgDiv;
+}
+
+function scrollToBottomChat() {
+    const chat = document.getElementById('agent-chat');
+    chat.scrollTop = chat.scrollHeight;
 }
 
 // Inicia a sequência de animação
