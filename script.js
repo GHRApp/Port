@@ -119,7 +119,7 @@ const botData = {
         log_trail: "[CloudTrail] Consultando histórico do Gustavo...",
         options: {
             "Quais são seus conhecimentos em Cloud?": "Tenho focado fortemente em AWS Cloud Security. Possuo a certificação AWS Certified Cloud Practitioner e estudo ativamente serviços de proteção e monitoramento, como AWS WAF, Shield e CloudWatch, para construir e proteger ambientes escaláveis.",
-            "O que te motiva a estar na área de TI?": "A inovação contínua e a capacidade de resolver problemas complexos. Comecei no Suporte resolvendo problemas técnicos e me apaixonei por entender como a tecnologia funciona por trás das cortinas. Evoluir a cada commit e usar a IA para ir mais longe é o que me move diariamente.",
+            "O que te motiva a estar na área de TI?": "A inovação contínua e a capacidade de resolver problemas complexos. Comecei no Suporte resolvendo problemas técnicos e me apaixonei por entender como a tecnologia funciona por trás das cortinas.",
             "O que te fez migrar para Segurança?": "A transição ocorreu porque a Segurança da Informação exige um nível de aprendizado contínuo que bate com o meu perfil. No suporte, eu via os problemas; na segurança, atuo proativamente com Gestão de Acessos e Blue/Red Team para evitar que as vulnerabilidades afetem as operações."
         }
     },
@@ -130,7 +130,7 @@ const botData = {
         log_trail: "[CloudTrail] Querying Gustavo's history...",
         options: {
             "What is your knowledge in Cloud?": "I am heavily focused on AWS Cloud Security. I hold the AWS Certified Cloud Practitioner certification and actively study protection and monitoring services like AWS WAF, Shield, and CloudWatch to build and protect scalable environments.",
-            "What motivates you in the IT field?": "Continuous innovation and the ability to solve complex problems. I started in Support fixing technical issues and fell in love with understanding how technology works behind the scenes. Evolving with every commit and using AI to go further is what drives me daily.",
+            "What motivates you in the IT field?": "Continuous innovation and the ability to solve complex problems. I started in Support fixing technical issues and fell in love with understanding how technology works behind the scenes.",
             "Why did you transition to Security?": "The transition happened because Information Security requires continuous learning, which fits my profile. In support, I saw the problems; in security, I proactively act with Access Management and Blue/Red Teams to prevent vulnerabilities from affecting operations."
         }
     }
