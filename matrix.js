@@ -1,4 +1,6 @@
 /* matrix.js */
+
+// CORREÇÃO: Guardamos a referência ao canvas e contexto uma única vez no topo
 const canvas = document.getElementById('matrix-canvas');
 const ctx = canvas.getContext('2d');
 
@@ -6,69 +8,90 @@ const ctx = canvas.getContext('2d');
 canvas.height = window.innerHeight;
 canvas.width = window.innerWidth;
 
-// Define os caracteres (apenas 0 e 1, como solicitado)
-const characters = "01"; 
+// ACESSIBILIDADE: canvas decorativo não precisa ser lido por leitores de tela
+canvas.setAttribute('aria-hidden', 'true');
 
-// Converte a string em um array de caracteres individuais
+// Define os caracteres (apenas 0 e 1)
+const characters = "01";
 const charArray = characters.split('');
 
 const fontSize = 16;
-// Calcula quantas colunas de texto cabem na largura da tela
-const columns = canvas.width / fontSize; 
+
+// CORREÇÃO: Usa Math.floor para garantir número inteiro de colunas
+let columns = Math.floor(canvas.width / fontSize);
 
 // Array para controlar a posição 'y' (vertical) de cada coluna
-// Inicializamos todas as colunas no topo (y=1)
 const drops = [];
-for(let x = 0; x < columns; x++) {
-    drops[x] = 1; 
+for (let x = 0; x < columns; x++) {
+    drops[x] = 1;
 }
 
-// Função principal que desenha a animação frame por frame
-function draw() {
-    // 1. Desenha um fundo preto semi-transparente sobre o frame anterior.
-    // Isso cria o efeito de rastro (fading) dos caracteres.
-    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+// CORREÇÃO: Usamos requestAnimationFrame no lugar de setInterval.
+// Vantagens:
+//   1. Pausa automaticamente quando a aba está em segundo plano (economiza CPU/bateria)
+//   2. Sincroniza com a taxa de atualização do monitor (mais suave)
+//   3. Permite cancelar com cancelAnimationFrame()
+let animationId = null;
+let lastTime = 0;
+const FRAME_INTERVAL = 33; // ~30 fps
 
-    // 2. Define a cor e fonte dos caracteres
-    ctx.fillStyle = "#0F0"; // Verde Matrix clássico
-    ctx.font = fontSize + "px arial";
+function draw(timestamp) {
+    // Só desenha se o intervalo de tempo desejado tiver passado
+    if (timestamp - lastTime >= FRAME_INTERVAL) {
+        lastTime = timestamp;
 
-    // 3. Loop para desenhar os caracteres em cada coluna
-    for(let i = 0; i < drops.length; i++) {
-        // Escolhe um caractere aleatório (0 ou 1)
-        const text = charArray[Math.floor(Math.random() * charArray.length)];
-        
-        // Desenha o caractere na posição (x, y) correspondente
-        // x = índice da coluna * tamanho da fonte
-        // y = posição atual da 'gota' * tamanho da fonte
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        // 1. Fundo preto semi-transparente para o efeito de rastro (fading)
+        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // 4. Incrementa a posição 'y' para o próximo frame
-        // Se a gota passar do final da tela OU aleatoriamente (para variar o tamanho das colunas),
-        // reinicia a gota no topo (y=0).
-        if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-            drops[i] = 0;
+        // 2. Define cor e fonte dos caracteres
+        ctx.fillStyle = "#0F0";
+        ctx.font = fontSize + "px arial";
+
+        // 3. Desenha um caractere em cada coluna
+        for (let i = 0; i < drops.length; i++) {
+            const text = charArray[Math.floor(Math.random() * charArray.length)];
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+            // Reinicia a gota aleatoriamente ao passar do final da tela
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                drops[i] = 0;
+            }
+            drops[i]++;
         }
-        
-        // Move a gota uma linha para baixo
-        drops[i]++;
     }
+
+    // Continua o loop de animação
+    animationId = requestAnimationFrame(draw);
 }
 
-// Executa a função draw a cada 33 milissegundos (aprox. 30 frames por segundo)
-setInterval(draw, 33);
+// Inicia a animação e guarda o ID para poder cancelar depois
+animationId = requestAnimationFrame(draw);
 
-// Garante que o canvas seja redimensionado se a janela do navegador mudar de tamanho
+// CORREÇÃO: Exporta a função de parada para ser chamada em script.js
+// durante a transição para o portfólio, evitando consumo desnecessário de CPU
+window.stopMatrixAnimation = function () {
+    if (animationId) {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+    }
+};
+
+// CORREÇÃO: Resize agora ajusta o array drops nos dois sentidos
+// (adiciona se a tela cresceu, remove se encolheu)
 window.addEventListener('resize', () => {
     canvas.height = window.innerHeight;
     canvas.width = window.innerWidth;
-    // Recalcula o número de colunas necessário
-    const newColumns = canvas.width / fontSize;
-    // Ajusta o array drops (mantendo os existentes e adicionando novos se necessário)
-    if (newColumns > drops.length) {
-        for(let x = drops.length; x < newColumns; x++) {
-            drops[x] = 1;
-        }
+
+    const newColumns = Math.floor(canvas.width / fontSize);
+
+    // Remove colunas extras se a janela encolheu
+    drops.length = newColumns;
+
+    // Adiciona novas colunas se a janela cresceu
+    for (let x = columns; x < newColumns; x++) {
+        drops[x] = 1;
     }
+
+    columns = newColumns;
 });

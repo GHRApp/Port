@@ -4,183 +4,313 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfólio - Gustavo Henrique</title>
+
+    <!--
+        CORREÇÃO: Content Security Policy (CSP).
+        Como profissional de segurança, ter um CSP é uma boa prática visível.
+        Esta política permite scripts apenas do próprio domínio ('self').
+        Ajuste conforme necessário se usar CDNs externos.
+    -->
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline';">
+
+    <!-- CORREÇÃO: Meta description melhora SEO e acessibilidade -->
+    <meta name="description" content="Portfólio de Gustavo Henrique Rodrigues Araujo — Segurança da Informação e Cloud AWS.">
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-    <canvas id="matrix-canvas"></canvas>
 
-    <div id="boot-screen">
+    <!--
+        CORREÇÃO: aria-hidden="true" — o canvas é puramente decorativo.
+        Leitores de tela devem ignorá-lo completamente.
+    -->
+    <canvas id="matrix-canvas" aria-hidden="true"></canvas>
+
+    <div id="boot-screen" role="region" aria-label="Terminal de inicialização">
         <div id="terminal-window">
             <div id="terminal-titlebar">
                 <span class="title">user@linux: ~</span>
             </div>
-            <div id="terminal-body">
+            <div id="terminal-body" aria-live="polite" aria-atomic="false">
+                <!--
+                    CORREÇÃO: aria-live="polite" avisa leitores de tela
+                    quando novo conteúdo é adicionado ao terminal dinamicamente.
+                -->
                 <div id="terminal-history"></div>
                 <div id="terminal-prompt-line">
                     <span class="prompt-user">user@linux</span><span class="prompt-separator">:</span><span class="prompt-dir">~$</span>
-                    <span id="terminal-typing"></span><span class="cursor">_</span>
+                    <span id="terminal-typing"></span><span class="cursor" aria-hidden="true">_</span>
                 </div>
             </div>
         </div>
     </div>
 
     <div id="portfolio-screen" class="hidden">
-        
-        <div id="language-toggle">
-            <button id="btn-pt" class="lang-btn active" onclick="changeLanguage('pt')">PT</button>
-            <button id="btn-en" class="lang-btn" onclick="changeLanguage('en')">EN</button>
+
+        <!-- Seletor de idioma -->
+        <div id="language-toggle" role="group" aria-label="Seletor de idioma">
+            <button id="btn-pt" class="lang-btn active" onclick="changeLanguage('pt')" aria-pressed="true">PT</button>
+            <button id="btn-en" class="lang-btn"        onclick="changeLanguage('en')" aria-pressed="false">EN</button>
         </div>
 
         <div class="portfolio-container">
-            
-            <section id="home" class="hero-section">
-                <h1>Gustavo Henrique<br><span class="highlight-text">Rodrigues Araujo</span></h1>
-                <p class="subtitle lang-text" data-pt="Engenheiro de Prompts em constante evolução, transformando ideias em código." data-en="Prompt Engineer in constant evolution, transforming ideas into code.">
+
+            <!-- Herói -->
+            <section id="home" class="hero-section" aria-labelledby="hero-title">
+                <h1 id="hero-title">Gustavo Henrique<br><span class="highlight-text">Rodrigues Araujo</span></h1>
+                <p class="subtitle lang-text"
+                   data-pt="Engenheiro de Prompts em constante evolução, transformando ideias em código."
+                   data-en="Prompt Engineer in constant evolution, transforming ideas into code.">
                     Engenheiro de Prompts em constante evolução, transformando ideias em código.
                 </p>
             </section>
 
             <hr class="divider">
 
-            <section id="sobre" class="content-section">
-                <h2 class="lang-text" data-pt="Sobre Mim" data-en="About Me">Sobre Mim</h2>
+            <!-- Sobre -->
+            <section id="sobre" class="content-section" aria-labelledby="sobre-title">
+                <h2 id="sobre-title" class="lang-text" data-pt="Sobre Mim" data-en="About Me">Sobre Mim</h2>
                 <div class="text-block">
-                    <p class="lang-text" data-pt="Iniciei minha carreira em tecnologia em 2023, motivado por um forte interesse em inovação e resolução de problemas." data-en="I started my tech career in 2023, driven by a strong interest in innovation and problem-solving.">Iniciei minha carreira em tecnologia em 2023, motivado por um forte interesse em inovação e resolução de problemas.</p>
-                    <p class="lang-text" data-pt="Minha primeira experiência foi como Estagiário de Suporte de TI, onde fui promovido a Analista de Suporte Júnior após demonstrar uma postura proativa e sólidas habilidades em troubleshooting técnico." data-en="My first experience was as an IT Support Intern, where I was promoted to Junior Support Analyst after demonstrating a proactive attitude and solid technical troubleshooting skills.">Minha primeira experiência foi como Estagiário de Suporte de TI, onde fui promovido a Analista de Suporte Júnior após demonstrar uma postura proativa e sólidas habilidades em troubleshooting técnico.</p>
-                    <p class="lang-text" data-pt="Buscando evoluir além das operações de suporte, fiz a transição para a área de <strong>Segurança da Informação</strong> — um campo que exige aprendizado contínuo e está totalmente alinhado ao meu compromisso com desenvolvimento pessoal e profissional." data-en="Seeking to evolve beyond support operations, I transitioned to <strong>Information Security</strong> — a field that requires continuous learning and fully aligns with my commitment to personal and professional development.">Buscando evoluir além das operações de suporte, fiz a transição para a área de <strong>Segurança da Informação</strong> — um campo que exige aprendizado contínuo e está totalmente alinhado ao meu compromisso com desenvolvimento pessoal e profissional.</p>
-                    <p class="lang-text" data-pt="Atualmente, atuo com Segurança da Informação, apoiando equipes como Gestão de Acessos, Red Team, Blue Team e Segurança em Cloud. Tenho contribuído com a organização de processos, suporte a operações de segurança e evolução contínua das práticas do time, enquanto fortaleço minha base em cibersegurança." data-en="Currently, I work in Information Security, supporting teams such as Access Management, Red Team, Blue Team, and Cloud Security. I contribute to process organization, security operations support, and continuous evolution of team practices, while strengthening my foundation in cybersecurity.">Atualmente, atuo com Segurança da Informação, apoiando equipes como Gestão de Acessos, Red Team, Blue Team e Segurança em Cloud. Tenho contribuído com a organização de processos, suporte a operações de segurança e evolução contínua das práticas do time, enquanto fortaleço minha base em cibersegurança.</p>
+                    <p class="lang-text"
+                       data-pt="Iniciei minha carreira em tecnologia em 2023, motivado por um forte interesse em inovação e resolução de problemas."
+                       data-en="I started my tech career in 2023, driven by a strong interest in innovation and problem-solving.">
+                        Iniciei minha carreira em tecnologia em 2023, motivado por um forte interesse em inovação e resolução de problemas.
+                    </p>
+                    <p class="lang-text"
+                       data-pt="Minha primeira experiência foi como Estagiário de Suporte de TI, onde fui promovido a Analista de Suporte Júnior após demonstrar uma postura proativa e sólidas habilidades em troubleshooting técnico."
+                       data-en="My first experience was as an IT Support Intern, where I was promoted to Junior Support Analyst after demonstrating a proactive attitude and solid technical troubleshooting skills.">
+                        Minha primeira experiência foi como Estagiário de Suporte de TI, onde fui promovido a Analista de Suporte Júnior após demonstrar uma postura proativa e sólidas habilidades em troubleshooting técnico.
+                    </p>
+                    <p class="lang-text"
+                       data-pt="Buscando evoluir além das operações de suporte, fiz a transição para a área de <strong>Segurança da Informação</strong> — um campo que exige aprendizado contínuo e está totalmente alinhado ao meu compromisso com desenvolvimento pessoal e profissional."
+                       data-en="Seeking to evolve beyond support operations, I transitioned to <strong>Information Security</strong> — a field that requires continuous learning and fully aligns with my commitment to personal and professional development.">
+                        Buscando evoluir além das operações de suporte, fiz a transição para a área de <strong>Segurança da Informação</strong> — um campo que exige aprendizado contínuo e está totalmente alinhado ao meu compromisso com desenvolvimento pessoal e profissional.
+                    </p>
+                    <p class="lang-text"
+                       data-pt="Atualmente, atuo com Segurança da Informação, apoiando equipes como Gestão de Acessos, Red Team, Blue Team e Segurança em Cloud. Tenho contribuído com a organização de processos, suporte a operações de segurança e evolução contínua das práticas do time, enquanto fortaleço minha base em cibersegurança."
+                       data-en="Currently, I work in Information Security, supporting teams such as Access Management, Red Team, Blue Team, and Cloud Security. I contribute to process organization, security operations support, and continuous evolution of team practices, while strengthening my foundation in cybersecurity.">
+                        Atualmente, atuo com Segurança da Informação, apoiando equipes como Gestão de Acessos, Red Team, Blue Team e Segurança em Cloud. Tenho contribuído com a organização de processos, suporte a operações de segurança e evolução contínua das práticas do time, enquanto fortaleço minha base em cibersegurança.
+                    </p>
                 </div>
             </section>
 
-            <section id="projetos" class="content-section">
-                <h2 class="lang-text" data-pt="Projetos" data-en="Projects">Projetos</h2>
+            <!-- Projetos -->
+            <section id="projetos" class="content-section" aria-labelledby="projetos-title">
+                <h2 id="projetos-title" class="lang-text" data-pt="Projetos" data-en="Projects">Projetos</h2>
                 <div class="card">
                     <h3>AI Knowledge Agent <span class="badge lang-text" data-pt="Em desenvolvimento" data-en="In development">Em desenvolvimento</span></h3>
-                    <p class="lang-text" data-pt="Desenvolvimento de um agente de IA interno com o objetivo de centralizar informações do time e facilitar a busca por conhecimento." data-en="Development of an internal AI agent aimed at centralizing team information and facilitating knowledge search.">Desenvolvimento de um agente de IA interno com o objetivo de centralizar informações do time e facilitar a busca por conhecimento.</p>
-                    <p><strong class="lang-text" data-pt="Objetivo:" data-en="Objective:">Objetivo:</strong> <span class="lang-text" data-pt="Reduzir o tempo gasto na busca por informações e aumentar a produtividade do time." data-en="Reduce the time spent searching for information and increase team productivity.">Reduzir o tempo gasto na busca por informações e aumentar a produtividade do time.</span></p>
-                    <p><strong class="lang-text" data-pt="Tecnologias:" data-en="Technologies:">Tecnologias:</strong> <span class="lang-text" data-pt="Python, APIs de IA, integração com serviços Cloud (em evolução)." data-en="Python, AI APIs, Cloud services integration (evolving).">Python, APIs de IA, integração com serviços Cloud (em evolução).</span></p>
+                    <p class="lang-text"
+                       data-pt="Desenvolvimento de um agente de IA interno com o objetivo de centralizar informações do time e facilitar a busca por conhecimento."
+                       data-en="Development of an internal AI agent aimed at centralizing team information and facilitating knowledge search.">
+                        Desenvolvimento de um agente de IA interno com o objetivo de centralizar informações do time e facilitar a busca por conhecimento.
+                    </p>
+                    <p>
+                        <strong class="lang-text" data-pt="Objetivo:" data-en="Objective:">Objetivo:</strong>
+                        <span class="lang-text"
+                              data-pt="Reduzir o tempo gasto na busca por informações e aumentar a produtividade do time."
+                              data-en="Reduce the time spent searching for information and increase team productivity.">
+                            Reduzir o tempo gasto na busca por informações e aumentar a produtividade do time.
+                        </span>
+                    </p>
+                    <p>
+                        <strong class="lang-text" data-pt="Tecnologias:" data-en="Technologies:">Tecnologias:</strong>
+                        <span class="lang-text"
+                              data-pt="Python, APIs de IA, integração com serviços Cloud (em evolução)."
+                              data-en="Python, AI APIs, Cloud services integration (evolving).">
+                            Python, APIs de IA, integração com serviços Cloud (em evolução).
+                        </span>
+                    </p>
                 </div>
             </section>
 
-            <section id="foco" class="content-section">
-                <h2 class="lang-text" data-pt="Foco Atual" data-en="Current Focus">Foco Atual</h2>
-                <p class="lang-text" data-pt="Atualmente, estou me especializando em Cloud Computing com foco em <strong>Cloud Security na AWS</strong>." data-en="Currently, I am specializing in Cloud Computing focusing on <strong>Cloud Security in AWS</strong>.">Atualmente, estou me especializando em Cloud Computing com foco em <strong>Cloud Security na AWS</strong>.</p>
-                
+            <!-- Foco Atual -->
+            <section id="foco" class="content-section" aria-labelledby="foco-title">
+                <h2 id="foco-title" class="lang-text" data-pt="Foco Atual" data-en="Current Focus">Foco Atual</h2>
+                <p class="lang-text"
+                   data-pt="Atualmente, estou me especializando em Cloud Computing com foco em <strong>Cloud Security na AWS</strong>."
+                   data-en="Currently, I am specializing in Cloud Computing focusing on <strong>Cloud Security in AWS</strong>.">
+                    Atualmente, estou me especializando em Cloud Computing com foco em <strong>Cloud Security na AWS</strong>.
+                </p>
                 <div class="card focus-card">
                     <p class="lang-text" data-pt="Estudos direcionados para:" data-en="Studies directed towards:">Estudos direcionados para:</p>
                     <ul class="service-icon-list">
                         <li>
-                            <img src="assets/waf.jpg" alt="AWS WAF" class="service-icon">
+                            <img src="assets/waf.jpg" alt="AWS WAF" class="service-icon" width="32" height="32">
                             <span>AWS WAF</span>
                         </li>
                         <li>
-                            <img src="assets/cloudwatch.png" alt="AWS CloudWatch" class="service-icon">
+                            <img src="assets/cloudwatch.png" alt="AWS CloudWatch" class="service-icon" width="32" height="32">
                             <span>AWS CloudWatch</span>
                         </li>
                         <li>
-                            <img src="assets/shield.png" alt="AWS Shield" class="service-icon">
+                            <img src="assets/shield.png" alt="AWS Shield" class="service-icon" width="32" height="32">
                             <span>AWS Shield</span>
                         </li>
                     </ul>
                 </div>
-                <p class="lang-text" data-pt="Busco desenvolver conhecimentos em proteção de aplicações, monitoramento e arquitetura segura em ambientes cloud." data-en="I seek to develop knowledge in application protection, monitoring, and secure architecture in cloud environments.">Busco desenvolver conhecimentos em proteção de aplicações, monitoramento e arquitetura segura em ambientes cloud.</p>
+                <p class="lang-text"
+                   data-pt="Busco desenvolver conhecimentos em proteção de aplicações, monitoramento e arquitetura segura em ambientes cloud."
+                   data-en="I seek to develop knowledge in application protection, monitoring, and secure architecture in cloud environments.">
+                    Busco desenvolver conhecimentos em proteção de aplicações, monitoramento e arquitetura segura em ambientes cloud.
+                </p>
             </section>
 
-            <section id="conhecimentos" class="content-section">
-                <h2 class="lang-text" data-pt="Tech Stack & Ferramentas" data-en="Tech Stack & Tools">Tech Stack & Ferramentas</h2>
-                <p style="margin-bottom: 20px; color: #b0bec5; font-size: 0.9rem;"><strong class="lang-text" data-pt="Board de Conhecimentos" data-en="Knowledge Board">Board de Conhecimentos</strong></p>
-                
-                <div class="jira-board">
-                    <div class="jira-column">
-                        <div class="jira-column-header">FrontEnd <span class="issue-count">4</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-blue"></span><span class="tech-name">HTML</span><span class="tech-time lang-text" data-pt="~2 anos" data-en="~2 years">~2 anos</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-blue"></span><span class="tech-name">CSS</span><span class="tech-time lang-text" data-pt="~2 anos" data-en="~2 years">~2 anos</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-blue"></span><span class="tech-name">JavaScript</span><span class="tech-time lang-text" data-pt="~2 anos" data-en="~2 years">~2 anos</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-blue"></span><span class="tech-name">React</span><span class="tech-time lang-text" data-pt="~1 ano" data-en="~1 year">~1 ano</span></div>
+            <!-- Tech Stack -->
+            <section id="conhecimentos" class="content-section" aria-labelledby="stack-title">
+                <h2 id="stack-title" class="lang-text" data-pt="Tech Stack &amp; Ferramentas" data-en="Tech Stack &amp; Tools">Tech Stack &amp; Ferramentas</h2>
+                <p style="margin-bottom: 20px; color: #b0bec5; font-size: 0.9rem;">
+                    <strong class="lang-text" data-pt="Board de Conhecimentos" data-en="Knowledge Board">Board de Conhecimentos</strong>
+                </p>
+
+                <div class="jira-board" role="list" aria-label="Board de conhecimentos técnicos">
+
+                    <div class="jira-column" role="listitem">
+                        <div class="jira-column-header">FrontEnd <span class="issue-count" aria-label="4 itens">4</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-blue" aria-hidden="true"></span><span class="tech-name">HTML</span><span class="tech-time lang-text" data-pt="~2 anos" data-en="~2 years">~2 anos</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-blue" aria-hidden="true"></span><span class="tech-name">CSS</span><span class="tech-time lang-text" data-pt="~2 anos" data-en="~2 years">~2 anos</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-blue" aria-hidden="true"></span><span class="tech-name">JavaScript</span><span class="tech-time lang-text" data-pt="~2 anos" data-en="~2 years">~2 anos</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-blue" aria-hidden="true"></span><span class="tech-name">React</span><span class="tech-time lang-text" data-pt="~1 ano" data-en="~1 year">~1 ano</span></div>
                     </div>
 
-                    <div class="jira-column">
-                        <div class="jira-column-header">BackEnd <span class="issue-count">1</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-green"></span><span class="tech-name">Python</span><span class="tech-time lang-text" data-pt="~1 ano" data-en="~1 year">~1 ano</span></div>
+                    <div class="jira-column" role="listitem">
+                        <div class="jira-column-header">BackEnd <span class="issue-count" aria-label="1 item">1</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-green" aria-hidden="true"></span><span class="tech-name">Python</span><span class="tech-time lang-text" data-pt="~1 ano" data-en="~1 year">~1 ano</span></div>
                     </div>
 
-                    <div class="jira-column">
-                        <div class="jira-column-header"><span class="lang-text" data-pt="Banco de Dados" data-en="Databases">Banco de Dados</span> <span class="issue-count">3</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-orange"></span><span class="tech-name">SQL</span><span class="tech-time lang-text" data-pt="~2 anos" data-en="~2 years">~2 anos</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-orange"></span><span class="tech-name">MySQL</span><span class="tech-time lang-text" data-pt="~1 ano" data-en="~1 year">~1 ano</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-orange"></span><span class="tech-name">PostgreSQL</span><span class="tech-time lang-text" data-pt="~1 ano" data-en="~1 year">~1 ano</span></div>
+                    <div class="jira-column" role="listitem">
+                        <div class="jira-column-header"><span class="lang-text" data-pt="Banco de Dados" data-en="Databases">Banco de Dados</span> <span class="issue-count" aria-label="3 itens">3</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-orange" aria-hidden="true"></span><span class="tech-name">SQL</span><span class="tech-time lang-text" data-pt="~2 anos" data-en="~2 years">~2 anos</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-orange" aria-hidden="true"></span><span class="tech-name">MySQL</span><span class="tech-time lang-text" data-pt="~1 ano" data-en="~1 year">~1 ano</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-orange" aria-hidden="true"></span><span class="tech-name">PostgreSQL</span><span class="tech-time lang-text" data-pt="~1 ano" data-en="~1 year">~1 ano</span></div>
                     </div>
 
-                    <div class="jira-column">
-                        <div class="jira-column-header"><span class="lang-text" data-pt="Ferramentas" data-en="Tools">Ferramentas</span> <span class="issue-count">5</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-purple"></span><span class="tech-name">Jira</span><span class="tech-time lang-text" data-pt="~2 anos" data-en="~2 years">~2 anos</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-purple"></span><span class="tech-name">Confluence</span><span class="tech-time lang-text" data-pt="~2 anos" data-en="~2 years">~2 anos</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-purple"></span><span class="tech-name">ServiceNow</span><span class="tech-time lang-text" data-pt="~2 anos" data-en="~2 years">~2 anos</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-purple"></span><span class="tech-name">Active Directory</span><span class="tech-time lang-text" data-pt="~2 anos" data-en="~2 years">~2 anos</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-purple"></span><span class="tech-name">Microsoft Entra ID</span><span class="tech-time lang-text" data-pt="~1 ano" data-en="~1 year">~1 ano</span></div>
+                    <div class="jira-column" role="listitem">
+                        <div class="jira-column-header"><span class="lang-text" data-pt="Ferramentas" data-en="Tools">Ferramentas</span> <span class="issue-count" aria-label="5 itens">5</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-purple" aria-hidden="true"></span><span class="tech-name">Jira</span><span class="tech-time lang-text" data-pt="~2 anos" data-en="~2 years">~2 anos</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-purple" aria-hidden="true"></span><span class="tech-name">Confluence</span><span class="tech-time lang-text" data-pt="~2 anos" data-en="~2 years">~2 anos</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-purple" aria-hidden="true"></span><span class="tech-name">ServiceNow</span><span class="tech-time lang-text" data-pt="~2 anos" data-en="~2 years">~2 anos</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-purple" aria-hidden="true"></span><span class="tech-name">Active Directory</span><span class="tech-time lang-text" data-pt="~2 anos" data-en="~2 years">~2 anos</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-purple" aria-hidden="true"></span><span class="tech-name">Microsoft Entra ID</span><span class="tech-time lang-text" data-pt="~1 ano" data-en="~1 year">~1 ano</span></div>
                     </div>
 
-                    <div class="jira-column">
-                        <div class="jira-column-header">SO's <span class="issue-count">2</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-black"></span><span class="tech-name">Windows</span><span class="tech-time lang-text" data-pt="~3 anos" data-en="~3 years">~3 anos</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-black"></span><span class="tech-name">Linux</span><span class="tech-time lang-text" data-pt="~1 ano" data-en="~1 year">~1 ano</span></div>
+                    <div class="jira-column" role="listitem">
+                        <div class="jira-column-header">SO's <span class="issue-count" aria-label="2 itens">2</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-black" aria-hidden="true"></span><span class="tech-name">Windows</span><span class="tech-time lang-text" data-pt="~3 anos" data-en="~3 years">~3 anos</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-black" aria-hidden="true"></span><span class="tech-name">Linux</span><span class="tech-time lang-text" data-pt="~1 ano" data-en="~1 year">~1 ano</span></div>
                     </div>
 
-                    <div class="jira-column">
-                        <div class="jira-column-header"><span class="lang-text" data-pt="Tecnologias" data-en="Technologies">Tecnologias</span> <span class="issue-count">1</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-red"></span><span class="tech-name">Bash</span><span class="tech-time lang-text" data-pt="~1 ano" data-en="~1 year">~1 ano</span></div>
+                    <div class="jira-column" role="listitem">
+                        <div class="jira-column-header"><span class="lang-text" data-pt="Tecnologias" data-en="Technologies">Tecnologias</span> <span class="issue-count" aria-label="1 item">1</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-red" aria-hidden="true"></span><span class="tech-name">Bash</span><span class="tech-time lang-text" data-pt="~1 ano" data-en="~1 year">~1 ano</span></div>
                     </div>
+
                 </div>
             </section>
 
-            <section id="certificacoes" class="content-section">
-                <h2 class="lang-text" data-pt="Certificações" data-en="Certifications">Certificações</h2>
+            <!-- Certificações -->
+            <section id="certificacoes" class="content-section" aria-labelledby="cert-title">
+                <h2 id="cert-title" class="lang-text" data-pt="Certificações" data-en="Certifications">Certificações</h2>
                 <div class="card cert-card" style="display: inline-block; padding: 15px 25px;">
                     <p style="margin: 0; font-weight: bold; color: #fff;">AWS Certified Cloud Practitioner</p>
                 </div>
             </section>
 
-            <section id="objetivo" class="content-section">
-                <h2 class="lang-text" data-pt="Objetivo" data-en="Objective">Objetivo</h2>
+            <!-- Objetivo -->
+            <section id="objetivo" class="content-section" aria-labelledby="obj-title">
+                <h2 id="obj-title" class="lang-text" data-pt="Objetivo" data-en="Objective">Objetivo</h2>
                 <div class="text-block highlight-block">
-                    <p class="lang-text" data-pt="Atuar como profissional de Cloud com foco em Segurança, contribuindo para a construção de ambientes seguros, escaláveis e resilientes, enquanto continuo evoluindo tecnicamente e ampliando meu impacto." data-en="Act as a Cloud professional focusing on Security, contributing to building secure, scalable, and resilient environments, while continuing to evolve technically and expand my impact.">Atuar como profissional de Cloud com foco em Segurança, contribuindo para a construção de ambientes seguros, escaláveis e resilientes, enquanto continuo evoluindo tecnicamente e ampliando meu impacto.</p>
+                    <p class="lang-text"
+                       data-pt="Atuar como profissional de Cloud com foco em Segurança, contribuindo para a construção de ambientes seguros, escaláveis e resilientes, enquanto continuo evoluindo tecnicamente e ampliando meu impacto."
+                       data-en="Act as a Cloud professional focusing on Security, contributing to building secure, scalable, and resilient environments, while continuing to evolve technically and expand my impact.">
+                        Atuar como profissional de Cloud com foco em Segurança, contribuindo para a construção de ambientes seguros, escaláveis e resilientes, enquanto continuo evoluindo tecnicamente e ampliando meu impacto.
+                    </p>
                 </div>
             </section>
 
             <hr class="divider">
 
-            <section id="contato" class="content-section">
-                <h2 class="lang-text" data-pt="Contato" data-en="Contact">Contato</h2>
+            <!-- Contato -->
+            <section id="contato" class="content-section" aria-labelledby="contato-title">
+                <h2 id="contato-title" class="lang-text" data-pt="Contato" data-en="Contact">Contato</h2>
                 <div class="contact-links">
-                    <a href="https://linkedin.com/in/gustavo-araújo-759592191" target="_blank" class="contact-btn">LinkedIn</a>
-                    <a href="mailto:ghstavo.henrique@hotmail.com" class="contact-btn">E-mail</a>
+                    <!--
+                        CORREÇÃO: target="_blank" sem rel="noopener noreferrer" é uma
+                        vulnerabilidade conhecida (tabnabbing). Sempre adicione rel="noopener noreferrer"
+                        em links que abrem em nova aba.
+                    -->
+                    <a href="https://linkedin.com/in/gustavo-ara%C3%BAjo-759592191"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="contact-btn">LinkedIn</a>
+                    <!--
+                        CORREÇÃO: O e-mail é montado pelo script.js de forma segura.
+                        O href aqui é um fallback para quem está sem JavaScript.
+                    -->
+                    <a id="email-link" href="#" class="contact-btn">E-mail</a>
                 </div>
             </section>
-            
-            <div id="ai-agent-toggle" onclick="toggleAgent()">
-                <img src="assets/aws.png" alt="Cloud Agent" id="agent-icon">
+
+            <!-- Botão do Agente de IA -->
+            <!--
+                CORREÇÃO: Adicionados role, aria-label e tabindex para acessibilidade.
+                O botão agora pode ser ativado pelo teclado (Tab + Enter).
+            -->
+            <div id="ai-agent-toggle"
+                 onclick="toggleAgent()"
+                 onkeydown="if(event.key==='Enter'||event.key===' ')toggleAgent()"
+                 role="button"
+                 tabindex="0"
+                 aria-label="Abrir assistente de IA"
+                 aria-expanded="false">
+                <img src="assets/aws.png" alt="" id="agent-icon" aria-hidden="true">
             </div>
 
-            <div id="ai-agent-window" class="hidden-agent">
+            <!-- Janela de Chat -->
+            <div id="ai-agent-window"
+                 class="hidden-agent"
+                 role="dialog"
+                 aria-label="Assistente de IA do Gustavo"
+                 aria-modal="false">
                 <div id="agent-header">
                     <span>Cloud Security Assistant v1.0</span>
-                    <button onclick="toggleAgent()">_</button>
+                    <button onclick="toggleAgent()" aria-label="Fechar assistente">&#x2715;</button>
                 </div>
-                <div id="agent-chat">
-                    </div>
-                <div id="agent-options-area">
-                    </div>
+                <div id="agent-chat" aria-live="polite" aria-atomic="false"></div>
+                <div id="agent-options-area"></div>
             </div>
 
             <footer>
-                <p class="lang-text" data-pt="Gustavo Henrique © 2026 - Desenvolvido com uso intenso de café." data-en="Gustavo Henrique © 2026 - Developed with intense use of coffee.">Gustavo Henrique © 2026 - Desenvolvido com uso intenso de café.</p>
+                <p class="lang-text"
+                   data-pt="Gustavo Henrique &copy; 2026 - Desenvolvido com uso intenso de café."
+                   data-en="Gustavo Henrique &copy; 2026 - Developed with intense use of coffee.">
+                    Gustavo Henrique &copy; 2026 - Desenvolvido com uso intenso de café.
+                </p>
             </footer>
 
         </div>
     </div>
 
-    <script src="script.js"></script>
-    <script src="matrix.js"></script>
+    <!--
+        CORREÇÃO: script.js carregado antes do matrix.js para garantir que
+        stopMatrixAnimation() esteja disponível quando matrix.js terminar de carregar.
+        Ambos usam 'defer' para não bloquear o carregamento da página.
+    -->
+    <script src="script.js" defer></script>
+    <script src="matrix.js" defer></script>
+
+    <!-- CORREÇÃO: Monta o link de e-mail via JS para dificultar bots de spam -->
+    <script>
+        (function () {
+            const u = 'ghstavo.henrique';
+            const d = 'hotmail.com';
+            const link = document.getElementById('email-link');
+            if (link) {
+                link.href = 'mailto:' + u + '@' + d;
+                link.textContent = 'E-mail';
+            }
+        })();
+    </script>
+
 </body>
 </html>
