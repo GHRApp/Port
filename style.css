@@ -507,3 +507,39 @@ footer {
     white-space: nowrap; /* Impede que o texto quebre em duas linhas */
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
+
+/* === Seletor de Idioma (Topo Direito) === */
+#language-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 5px;
+    background-color: rgba(22, 27, 34, 0.8);
+    padding: 5px;
+    border-radius: 8px;
+    border: 1px solid #30363d;
+    z-index: 100;
+}
+
+.lang-btn {
+    background: transparent;
+    color: #8b949e;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Segoe UI', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.lang-btn:hover {
+    color: #fff;
+    background-color: rgba(114, 159, 207, 0.2);
+}
+
+.lang-btn.active {
+    background-color: #729FCF;
+    color: #000;
+}

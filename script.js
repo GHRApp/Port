@@ -6,7 +6,34 @@ const bootScreen = document.getElementById('boot-screen');
 const portfolioScreen = document.getElementById('portfolio-screen');
 
 const TYPING_SPEED = 40;
+let currentLanguage = 'pt'; // Define Português como padrão
 
+// --- Sistema de Idioma ---
+function changeLanguage(lang) {
+    currentLanguage = lang;
+    
+    // Altera estilo dos botões
+    document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    
+    // Altera os textos estáticos da página
+    document.querySelectorAll('.lang-text').forEach(el => {
+        el.innerHTML = el.getAttribute(`data-${lang}`);
+    });
+
+    // Atualiza/Reseta o Chat do Bot se a linguagem mudar
+    const chat = document.getElementById('agent-chat');
+    chat.innerHTML = `<div class="bot-msg">${botData[lang].greeting}</div>`;
+    
+    const optionsArea = document.getElementById('agent-options-area');
+    if (!document.getElementById('ai-agent-window').classList.contains('hidden-agent')) {
+        renderBotOptions();
+    } else {
+        optionsArea.innerHTML = ''; // Limpa botões se estiver fechado
+    }
+}
+
+// --- Funções do Terminal Boot ---
 function getCurrentDateTime() {
     const now = new Date();
     return now.toString().replace(/\s*\(.*\)/, ''); 
@@ -42,21 +69,17 @@ Last login: ${loginTime}
     appendLineToHistory(motd);
     
     await delay(2500); 
-    
     transitionToPortfolio();
 }
 
 function transitionToPortfolio() {
     bootScreen.style.opacity = '0';
-    
     setTimeout(() => {
         bootScreen.classList.add('hidden');
         portfolioScreen.classList.remove('hidden');
-        
         setTimeout(() => {
             portfolioScreen.classList.add('visible');
         }, 50);
-        
     }, 1000); 
 }
 
@@ -87,11 +110,30 @@ function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-// --- Banco de Dados do Agente ---
+// --- Banco de Dados do Agente (Bilíngue) ---
 const botData = {
-    "Quais são seus conhecimentos em Cloud?": "Tenho focado fortemente em AWS Cloud Security. Possuo a certificação AWS Certified Cloud Practitioner e estudo ativamente serviços de proteção e monitoramento, como AWS WAF, Shield e CloudWatch, para construir e proteger ambientes escaláveis.",
-    "O que te motiva a estar na área de TI?": "A inovação contínua e a capacidade de resolver problemas complexos. Comecei no Suporte resolvendo problemas técnicos e me apaixonei por entender como a tecnologia funciona por trás das cortinas. Evoluir a cada commit e usar a IA para ir mais longe é o que me move diariamente.",
-    "O que te fez migrar para Segurança?": "A transição ocorreu porque a Segurança da Informação exige um nível de aprendizado contínuo que bate com o meu perfil. No suporte, eu via os problemas; na segurança, atuo proativamente com Gestão de Acessos e Blue/Red Team para evitar que as vulnerabilidades afetem as operações."
+    pt: {
+        greeting: "Olá! Sou o assistente de IA do Gustavo. Escolha uma das opções abaixo para saber mais sobre ele:",
+        more: "Ajudo com algo mais?",
+        log_iam: "[AWS-IAM] Validando permissão de leitura... OK",
+        log_trail: "[CloudTrail] Consultando histórico do Gustavo...",
+        options: {
+            "Quais são seus conhecimentos em Cloud?": "Tenho focado fortemente em AWS Cloud Security. Possuo a certificação AWS Certified Cloud Practitioner e estudo ativamente serviços de proteção e monitoramento, como AWS WAF, Shield e CloudWatch, para construir e proteger ambientes escaláveis.",
+            "O que te motiva a estar na área de TI?": "A inovação contínua e a capacidade de resolver problemas complexos. Comecei no Suporte resolvendo problemas técnicos e me apaixonei por entender como a tecnologia funciona por trás das cortinas. Evoluir a cada commit e usar a IA para ir mais longe é o que me move diariamente.",
+            "O que te fez migrar para Segurança?": "A transição ocorreu porque a Segurança da Informação exige um nível de aprendizado contínuo que bate com o meu perfil. No suporte, eu via os problemas; na segurança, atuo proativamente com Gestão de Acessos e Blue/Red Team para evitar que as vulnerabilidades afetem as operações."
+        }
+    },
+    en: {
+        greeting: "Hello! I am Gustavo's AI assistant. Choose an option below to learn more about him:",
+        more: "Can I help you with anything else?",
+        log_iam: "[AWS-IAM] Validating read permissions... OK",
+        log_trail: "[CloudTrail] Querying Gustavo's history...",
+        options: {
+            "What is your knowledge in Cloud?": "I am heavily focused on AWS Cloud Security. I hold the AWS Certified Cloud Practitioner certification and actively study protection and monitoring services like AWS WAF, Shield, and CloudWatch to build and protect scalable environments.",
+            "What motivates you in the IT field?": "Continuous innovation and the ability to solve complex problems. I started in Support fixing technical issues and fell in love with understanding how technology works behind the scenes. Evolving with every commit and using AI to go further is what drives me daily.",
+            "Why did you transition to Security?": "The transition happened because Information Security requires continuous learning, which fits my profile. In support, I saw the problems; in security, I proactively act with Access Management and Blue/Red Teams to prevent vulnerabilities from affecting operations."
+        }
+    }
 };
 
 // --- Funções do Agente de IA ---
@@ -101,6 +143,9 @@ function toggleAgent() {
     
     const optionsArea = document.getElementById('agent-options-area');
     if (optionsArea.children.length === 0) {
+        // Inicializa a mensagem de saudação
+        const chat = document.getElementById('agent-chat');
+        chat.innerHTML = `<div class="bot-msg">${botData[currentLanguage].greeting}</div>`;
         renderBotOptions();
     }
 }
@@ -109,35 +154,36 @@ function renderBotOptions() {
     const optionsArea = document.getElementById('agent-options-area');
     optionsArea.innerHTML = ''; 
     
-    for (const question of Object.keys(botData)) {
+    const currentOptions = botData[currentLanguage].options;
+    
+    for (const question of Object.keys(currentOptions)) {
         const btn = document.createElement('button');
         btn.className = 'agent-option-btn';
         btn.textContent = question;
-        btn.onclick = () => handleOptionClick(question);
+        btn.onclick = () => handleOptionClick(question, currentOptions[question]);
         optionsArea.appendChild(btn);
     }
 }
 
-async function handleOptionClick(question) {
+async function handleOptionClick(question, answer) {
     const optionsArea = document.getElementById('agent-options-area');
-    
     optionsArea.style.display = 'none'; 
 
     addChatMessage(question, 'user-msg');
 
     const botDiv = addChatMessage('...', 'bot-msg');
     await delay(400);
-    botDiv.innerHTML = `<div class="cloud-log">[AWS-IAM] Validando permissão de leitura... OK</div>`;
+    botDiv.innerHTML = `<div class="cloud-log">${botData[currentLanguage].log_iam}</div>`;
     await delay(600);
-    botDiv.innerHTML += `<div class="cloud-log">[CloudTrail] Consultando histórico do Gustavo...</div>`;
+    botDiv.innerHTML += `<div class="cloud-log">${botData[currentLanguage].log_trail}</div>`;
     await delay(800);
 
-    botDiv.innerHTML = botData[question];
+    botDiv.innerHTML = answer;
     scrollToBottomChat();
 
     await delay(1000); 
     
-    addChatMessage("Ajudo com algo mais?", 'bot-msg');
+    addChatMessage(botData[currentLanguage].more, 'bot-msg');
     
     optionsArea.style.display = 'flex'; 
     scrollToBottomChat();

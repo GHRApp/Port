@@ -27,11 +27,16 @@
 
     <div id="portfolio-screen" class="hidden">
         
+        <div id="language-toggle">
+            <button id="btn-pt" class="lang-btn active" onclick="changeLanguage('pt')">PT</button>
+            <button id="btn-en" class="lang-btn" onclick="changeLanguage('en')">EN</button>
+        </div>
+
         <div class="portfolio-container">
             
             <section id="home" class="hero-section">
                 <h1>Gustavo Henrique<br><span class="highlight-text">Rodrigues Araujo</span></h1>
-                <p class="subtitle">
+                <p class="subtitle lang-text" data-pt="Engenheiro de Prompts em constante evolução, transformando ideias em código." data-en="Prompt Engineer in constant evolution, transforming ideas into code.">
                     Engenheiro de Prompts em constante evolução, transformando ideias em código.
                 </p>
             </section>
@@ -39,31 +44,31 @@
             <hr class="divider">
 
             <section id="sobre" class="content-section">
-                <h2>Sobre Mim</h2>
+                <h2 class="lang-text" data-pt="Sobre Mim" data-en="About Me">Sobre Mim</h2>
                 <div class="text-block">
-                    <p>Iniciei minha carreira em tecnologia em 2023, motivado por um forte interesse em inovação e resolução de problemas.</p>
-                    <p>Minha primeira experiência foi como Estagiário de Suporte de TI, onde fui promovido a Analista de Suporte Júnior após demonstrar uma postura proativa e sólidas habilidades em troubleshooting técnico.</p>
-                    <p>Buscando evoluir além das operações de suporte, fiz a transição para a área de <strong>Segurança da Informação</strong> — um campo que exige aprendizado contínuo e está totalmente alinhado ao meu compromisso com desenvolvimento pessoal e profissional.</p>
-                    <p>Atualmente, atuo com Segurança da Informação, apoiando equipes como Gestão de Acessos, Red Team, Blue Team e Segurança em Cloud. Tenho contribuído com a organização de processos, suporte a operações de segurança e evolução contínua das práticas do time, enquanto fortaleço minha base em cibersegurança.</p>
+                    <p class="lang-text" data-pt="Iniciei minha carreira em tecnologia em 2023, motivado por um forte interesse em inovação e resolução de problemas." data-en="I started my tech career in 2023, driven by a strong interest in innovation and problem-solving.">Iniciei minha carreira em tecnologia em 2023, motivado por um forte interesse em inovação e resolução de problemas.</p>
+                    <p class="lang-text" data-pt="Minha primeira experiência foi como Estagiário de Suporte de TI, onde fui promovido a Analista de Suporte Júnior após demonstrar uma postura proativa e sólidas habilidades em troubleshooting técnico." data-en="My first experience was as an IT Support Intern, where I was promoted to Junior Support Analyst after demonstrating a proactive attitude and solid technical troubleshooting skills.">Minha primeira experiência foi como Estagiário de Suporte de TI, onde fui promovido a Analista de Suporte Júnior após demonstrar uma postura proativa e sólidas habilidades em troubleshooting técnico.</p>
+                    <p class="lang-text" data-pt="Buscando evoluir além das operações de suporte, fiz a transição para a área de <strong>Segurança da Informação</strong> — um campo que exige aprendizado contínuo e está totalmente alinhado ao meu compromisso com desenvolvimento pessoal e profissional." data-en="Seeking to evolve beyond support operations, I transitioned to <strong>Information Security</strong> — a field that requires continuous learning and fully aligns with my commitment to personal and professional development.">Buscando evoluir além das operações de suporte, fiz a transição para a área de <strong>Segurança da Informação</strong> — um campo que exige aprendizado contínuo e está totalmente alinhado ao meu compromisso com desenvolvimento pessoal e profissional.</p>
+                    <p class="lang-text" data-pt="Atualmente, atuo com Segurança da Informação, apoiando equipes como Gestão de Acessos, Red Team, Blue Team e Segurança em Cloud. Tenho contribuído com a organização de processos, suporte a operações de segurança e evolução contínua das práticas do time, enquanto fortaleço minha base em cibersegurança." data-en="Currently, I work in Information Security, supporting teams such as Access Management, Red Team, Blue Team, and Cloud Security. I contribute to process organization, security operations support, and continuous evolution of team practices, while strengthening my foundation in cybersecurity.">Atualmente, atuo com Segurança da Informação, apoiando equipes como Gestão de Acessos, Red Team, Blue Team e Segurança em Cloud. Tenho contribuído com a organização de processos, suporte a operações de segurança e evolução contínua das práticas do time, enquanto fortaleço minha base em cibersegurança.</p>
                 </div>
             </section>
 
             <section id="projetos" class="content-section">
-                <h2>Projetos</h2>
+                <h2 class="lang-text" data-pt="Projetos" data-en="Projects">Projetos</h2>
                 <div class="card">
-                    <h3>AI Knowledge Agent <span class="badge">Em desenvolvimento</span></h3>
-                    <p>Desenvolvimento de um agente de IA interno com o objetivo de centralizar informações do time e facilitar a busca por conhecimento.</p>
-                    <p><strong>Objetivo:</strong> Reduzir o tempo gasto na busca por informações e aumentar a produtividade do time.</p>
-                    <p><strong>Tecnologias:</strong> Python, APIs de IA, integração com serviços Cloud (em evolução).</p>
+                    <h3>AI Knowledge Agent <span class="badge lang-text" data-pt="Em desenvolvimento" data-en="In development">Em desenvolvimento</span></h3>
+                    <p class="lang-text" data-pt="Desenvolvimento de um agente de IA interno com o objetivo de centralizar informações do time e facilitar a busca por conhecimento." data-en="Development of an internal AI agent aimed at centralizing team information and facilitating knowledge search.">Desenvolvimento de um agente de IA interno com o objetivo de centralizar informações do time e facilitar a busca por conhecimento.</p>
+                    <p><strong class="lang-text" data-pt="Objetivo:" data-en="Objective:">Objetivo:</strong> <span class="lang-text" data-pt="Reduzir o tempo gasto na busca por informações e aumentar a produtividade do time." data-en="Reduce the time spent searching for information and increase team productivity.">Reduzir o tempo gasto na busca por informações e aumentar a produtividade do time.</span></p>
+                    <p><strong class="lang-text" data-pt="Tecnologias:" data-en="Technologies:">Tecnologias:</strong> <span class="lang-text" data-pt="Python, APIs de IA, integração com serviços Cloud (em evolução)." data-en="Python, AI APIs, Cloud services integration (evolving).">Python, APIs de IA, integração com serviços Cloud (em evolução).</span></p>
                 </div>
             </section>
 
             <section id="foco" class="content-section">
-                <h2>Foco Atual</h2>
-                <p>Atualmente, estou me especializando em Cloud Computing com foco em <strong>Cloud Security na AWS</strong>.</p>
+                <h2 class="lang-text" data-pt="Foco Atual" data-en="Current Focus">Foco Atual</h2>
+                <p class="lang-text" data-pt="Atualmente, estou me especializando em Cloud Computing com foco em <strong>Cloud Security na AWS</strong>." data-en="Currently, I am specializing in Cloud Computing focusing on <strong>Cloud Security in AWS</strong>.">Atualmente, estou me especializando em Cloud Computing com foco em <strong>Cloud Security na AWS</strong>.</p>
                 
                 <div class="card focus-card">
-                    <p>Estudos direcionados para:</p>
+                    <p class="lang-text" data-pt="Estudos direcionados para:" data-en="Studies directed towards:">Estudos direcionados para:</p>
                     <ul class="service-icon-list">
                         <li>
                             <img src="assets/waf.jpg" alt="AWS WAF" class="service-icon">
@@ -79,74 +84,74 @@
                         </li>
                     </ul>
                 </div>
-                <p>Busco desenvolver conhecimentos em proteção de aplicações, monitoramento e arquitetura segura em ambientes cloud.</p>
+                <p class="lang-text" data-pt="Busco desenvolver conhecimentos em proteção de aplicações, monitoramento e arquitetura segura em ambientes cloud." data-en="I seek to develop knowledge in application protection, monitoring, and secure architecture in cloud environments.">Busco desenvolver conhecimentos em proteção de aplicações, monitoramento e arquitetura segura em ambientes cloud.</p>
             </section>
 
             <section id="conhecimentos" class="content-section">
-                <h2>Tech Stack & Ferramentas</h2>
-                <p style="margin-bottom: 20px; color: #b0bec5; font-size: 0.9rem;"><strong>Board de Conhecimentos</strong></p>
+                <h2 class="lang-text" data-pt="Tech Stack & Ferramentas" data-en="Tech Stack & Tools">Tech Stack & Ferramentas</h2>
+                <p style="margin-bottom: 20px; color: #b0bec5; font-size: 0.9rem;"><strong class="lang-text" data-pt="Board de Conhecimentos" data-en="Knowledge Board">Board de Conhecimentos</strong></p>
                 
                 <div class="jira-board">
                     <div class="jira-column">
                         <div class="jira-column-header">FrontEnd <span class="issue-count">4</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-blue"></span><span class="tech-name">HTML</span><span class="tech-time">~2 anos</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-blue"></span><span class="tech-name">CSS</span><span class="tech-time">~2 anos</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-blue"></span><span class="tech-name">JavaScript</span><span class="tech-time">~2 anos</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-blue"></span><span class="tech-name">React</span><span class="tech-time">~1 ano</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-blue"></span><span class="tech-name">HTML</span><span class="tech-time lang-text" data-pt="~2 anos" data-en="~2 years">~2 anos</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-blue"></span><span class="tech-name">CSS</span><span class="tech-time lang-text" data-pt="~2 anos" data-en="~2 years">~2 anos</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-blue"></span><span class="tech-name">JavaScript</span><span class="tech-time lang-text" data-pt="~2 anos" data-en="~2 years">~2 anos</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-blue"></span><span class="tech-name">React</span><span class="tech-time lang-text" data-pt="~1 ano" data-en="~1 year">~1 ano</span></div>
                     </div>
 
                     <div class="jira-column">
                         <div class="jira-column-header">BackEnd <span class="issue-count">1</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-green"></span><span class="tech-name">Python</span><span class="tech-time">~1 ano</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-green"></span><span class="tech-name">Python</span><span class="tech-time lang-text" data-pt="~1 ano" data-en="~1 year">~1 ano</span></div>
                     </div>
 
                     <div class="jira-column">
-                        <div class="jira-column-header">Banco de Dados <span class="issue-count">3</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-orange"></span><span class="tech-name">SQL</span><span class="tech-time">~2 anos</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-orange"></span><span class="tech-name">MySQL</span><span class="tech-time">~1 ano</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-orange"></span><span class="tech-name">PostgreSQL</span><span class="tech-time">~1 ano</span></div>
+                        <div class="jira-column-header"><span class="lang-text" data-pt="Banco de Dados" data-en="Databases">Banco de Dados</span> <span class="issue-count">3</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-orange"></span><span class="tech-name">SQL</span><span class="tech-time lang-text" data-pt="~2 anos" data-en="~2 years">~2 anos</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-orange"></span><span class="tech-name">MySQL</span><span class="tech-time lang-text" data-pt="~1 ano" data-en="~1 year">~1 ano</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-orange"></span><span class="tech-name">PostgreSQL</span><span class="tech-time lang-text" data-pt="~1 ano" data-en="~1 year">~1 ano</span></div>
                     </div>
 
                     <div class="jira-column">
-                        <div class="jira-column-header">Ferramentas <span class="issue-count">5</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-purple"></span><span class="tech-name">Jira</span><span class="tech-time">~2 anos</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-purple"></span><span class="tech-name">Confluence</span><span class="tech-time">~2 anos</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-purple"></span><span class="tech-name">ServiceNow</span><span class="tech-time">~2 anos</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-purple"></span><span class="tech-name">Active Directory</span><span class="tech-time">~2 anos</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-purple"></span><span class="tech-name">Microsoft Entra ID</span><span class="tech-time">~1 ano</span></div>
+                        <div class="jira-column-header"><span class="lang-text" data-pt="Ferramentas" data-en="Tools">Ferramentas</span> <span class="issue-count">5</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-purple"></span><span class="tech-name">Jira</span><span class="tech-time lang-text" data-pt="~2 anos" data-en="~2 years">~2 anos</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-purple"></span><span class="tech-name">Confluence</span><span class="tech-time lang-text" data-pt="~2 anos" data-en="~2 years">~2 anos</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-purple"></span><span class="tech-name">ServiceNow</span><span class="tech-time lang-text" data-pt="~2 anos" data-en="~2 years">~2 anos</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-purple"></span><span class="tech-name">Active Directory</span><span class="tech-time lang-text" data-pt="~2 anos" data-en="~2 years">~2 anos</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-purple"></span><span class="tech-name">Microsoft Entra ID</span><span class="tech-time lang-text" data-pt="~1 ano" data-en="~1 year">~1 ano</span></div>
                     </div>
 
                     <div class="jira-column">
                         <div class="jira-column-header">SO's <span class="issue-count">2</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-black"></span><span class="tech-name">Windows</span><span class="tech-time">~3 anos</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-black"></span><span class="tech-name">Linux</span><span class="tech-time">~1 anos</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-black"></span><span class="tech-name">Windows</span><span class="tech-time lang-text" data-pt="~3 anos" data-en="~3 years">~3 anos</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-black"></span><span class="tech-name">Linux</span><span class="tech-time lang-text" data-pt="~1 ano" data-en="~1 year">~1 ano</span></div>
                     </div>
 
                     <div class="jira-column">
-                        <div class="jira-column-header">Tecnologias <span class="issue-count">1</span></div>
-                        <div class="jira-card"><span class="jira-icon icon-red"></span><span class="tech-name">Bash</span><span class="tech-time">~1 ano</span></div>
+                        <div class="jira-column-header"><span class="lang-text" data-pt="Tecnologias" data-en="Technologies">Tecnologias</span> <span class="issue-count">1</span></div>
+                        <div class="jira-card"><span class="jira-icon icon-red"></span><span class="tech-name">Bash</span><span class="tech-time lang-text" data-pt="~1 ano" data-en="~1 year">~1 ano</span></div>
                     </div>
                 </div>
             </section>
 
             <section id="certificacoes" class="content-section">
-                <h2>Certificações</h2>
+                <h2 class="lang-text" data-pt="Certificações" data-en="Certifications">Certificações</h2>
                 <div class="card cert-card" style="display: inline-block; padding: 15px 25px;">
                     <p style="margin: 0; font-weight: bold; color: #fff;">AWS Certified Cloud Practitioner</p>
                 </div>
             </section>
 
             <section id="objetivo" class="content-section">
-                <h2>Objetivo</h2>
+                <h2 class="lang-text" data-pt="Objetivo" data-en="Objective">Objetivo</h2>
                 <div class="text-block highlight-block">
-                    <p>Atuar como profissional de Cloud com foco em Segurança, contribuindo para a construção de ambientes seguros, escaláveis e resilientes, enquanto continuo evoluindo tecnicamente e ampliando meu impacto.</p>
+                    <p class="lang-text" data-pt="Atuar como profissional de Cloud com foco em Segurança, contribuindo para a construção de ambientes seguros, escaláveis e resilientes, enquanto continuo evoluindo tecnicamente e ampliando meu impacto." data-en="Act as a Cloud professional focusing on Security, contributing to building secure, scalable, and resilient environments, while continuing to evolve technically and expand my impact.">Atuar como profissional de Cloud com foco em Segurança, contribuindo para a construção de ambientes seguros, escaláveis e resilientes, enquanto continuo evoluindo tecnicamente e ampliando meu impacto.</p>
                 </div>
             </section>
 
             <hr class="divider">
 
             <section id="contato" class="content-section">
-                <h2>Contato</h2>
+                <h2 class="lang-text" data-pt="Contato" data-en="Contact">Contato</h2>
                 <div class="contact-links">
                     <a href="https://linkedin.com/in/gustavo-araújo-759592191" target="_blank" class="contact-btn">LinkedIn</a>
                     <a href="mailto:ghstavo.henrique@hotmail.com" class="contact-btn">E-mail</a>
@@ -159,18 +164,17 @@
 
             <div id="ai-agent-window" class="hidden-agent">
                 <div id="agent-header">
-                    <span>Security Agent Assistant</span>
+                    <span>Cloud Security Assistant v1.0</span>
                     <button onclick="toggleAgent()">_</button>
                 </div>
                 <div id="agent-chat">
-                    <div class="bot-msg">Olá! Sou o assistente de IA do Gustavo. Escolha uma das opções abaixo para saber mais sobre ele:</div>
-                </div>
+                    </div>
                 <div id="agent-options-area">
                     </div>
             </div>
 
             <footer>
-                <p>Gustavo Henrique © 2026 - Desenvolvido com uso intenso de café.</p>
+                <p class="lang-text" data-pt="Gustavo Henrique © 2026 - Desenvolvido com uso intenso de café." data-en="Gustavo Henrique © 2026 - Developed with intense use of coffee.">Gustavo Henrique © 2026 - Desenvolvido com uso intenso de café.</p>
             </footer>
 
         </div>
