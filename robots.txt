@@ -1,0 +1,11 @@
+# robots.txt para Portfólio - Gustavo Henrique
+# Permite indexação completa do site
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://ghrapp.github.io/Port/sitemap.xml
+
+# Crawl-delay para respeitar recursos
+Crawl-delay: 1

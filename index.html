@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio - Gustavo Henrique</title>
+    <title>Gustavo Henrique | Cloud Security Engineer | AWS Specialist</title>
 
     <!--
         CORREÇÃO: Content Security Policy (CSP).
@@ -14,8 +14,38 @@
     <meta http-equiv="Content-Security-Policy"
           content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline';">
 
-    <!-- CORREÇÃO: Meta description melhora SEO e acessibilidade -->
-    <meta name="description" content="Portfólio de Gustavo Henrique Rodrigues Araujo — Segurança da Informação e Cloud AWS.">
+    <!-- Meta Tags SEO -->
+    <meta name="description" content="Profissional de Segurança da Informação especializado em AWS Cloud Security. Certificado AWS Cloud Practitioner. Experiência em Red Team, Blue Team e Gestão de Acessos.">
+    <meta name="keywords" content="Cloud Security, AWS, Segurança da Informação, Cloud Computing, AWS Security, DevSecOps, Gustavo Henrique">
+    <meta name="author" content="Gustavo Henrique Rodrigues Araujo">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ghrapp.github.io/Port/">
+    <meta property="og:title" content="Gustavo Henrique | Cloud Security Engineer | AWS Specialist">
+    <meta property="og:description" content="Profissional de Segurança da Informação especializado em AWS Cloud Security. Certificado AWS Cloud Practitioner com foco em Red Team, Blue Team e Cloud Security.">
+    <meta property="og:image" content="https://ghrapp.github.io/Port/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:locale:alternate" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://ghrapp.github.io/Port/">
+    <meta name="twitter:title" content="Gustavo Henrique | Cloud Security Engineer">
+    <meta name="twitter:description" content="Profissional de Segurança da Informação especializado em AWS Cloud Security.">
+    <meta name="twitter:image" content="https://ghrapp.github.io/Port/assets/twitter-card.png">
+
+    <!-- Favicon SVG temporário (funciona até criar arquivos reais) -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%238AE234'/%3E%3Cstop offset='1' stop-color='%23729FCF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' fill='url(%23g)' rx='5'/%3E%3Ctext x='16' y='20' text-anchor='middle' font-family='Arial' font-size='18' font-weight='bold' fill='white'%3EGH%3C/text%3E%3C/svg%3E">
+
+    <!-- Favicon PNG (criar arquivos reais conforme CREATE_FAVICON.md) -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="manifest" href="assets/site.webmanifest">
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -43,10 +73,30 @@
                     <span id="terminal-typing"></span><span class="cursor" aria-hidden="true">_</span>
                 </div>
             </div>
+            <button id="skip-boot-btn"
+                    onclick="transitionToPortfolio()"
+                    class="skip-btn"
+                    aria-label="Pular animação de inicialização">
+                Press ESC or click to skip ⏩
+            </button>
         </div>
     </div>
 
     <div id="portfolio-screen" class="hidden">
+
+        <!-- Menu de Navegação -->
+        <nav id="main-nav" role="navigation" aria-label="Menu principal">
+            <div class="nav-container">
+                <a href="#home" class="nav-logo">GH</a>
+                <div class="nav-links">
+                    <a href="#sobre" class="nav-link lang-text" data-pt="Sobre" data-en="About">Sobre</a>
+                    <a href="#projetos" class="nav-link lang-text" data-pt="Projetos" data-en="Projects">Projetos</a>
+                    <a href="#conhecimentos" class="nav-link lang-text" data-pt="Skills" data-en="Skills">Skills</a>
+                    <a href="#certificacoes" class="nav-link lang-text" data-pt="Certificações" data-en="Certifications">Certificações</a>
+                    <a href="#contato" class="nav-link lang-text" data-pt="Contato" data-en="Contact">Contato</a>
+                </div>
+            </div>
+        </nav>
 
         <!-- Seletor de idioma -->
         <div id="language-toggle" role="group" aria-label="Seletor de idioma">
@@ -64,6 +114,10 @@
                    data-en="Prompt Engineer in constant evolution, transforming ideas into code.">
                     Engenheiro de Prompts em constante evolução, transformando ideias em código.
                 </p>
+                <div class="hero-cta">
+                    <a href="#projetos" class="cta-btn cta-primary lang-text" data-pt="Ver Projetos" data-en="View Projects">Ver Projetos</a>
+                    <a href="#contato" class="cta-btn cta-secondary lang-text" data-pt="Entre em Contato" data-en="Get in Touch">Entre em Contato</a>
+                </div>
             </section>
 
             <hr class="divider">
@@ -98,29 +152,106 @@
             <!-- Projetos -->
             <section id="projetos" class="content-section" aria-labelledby="projetos-title">
                 <h2 id="projetos-title" class="lang-text" data-pt="Projetos" data-en="Projects">Projetos</h2>
-                <div class="card">
-                    <h3>AI Knowledge Agent <span class="badge lang-text" data-pt="Em desenvolvimento" data-en="In development">Em desenvolvimento</span></h3>
-                    <p class="lang-text"
-                       data-pt="Desenvolvimento de um agente de IA interno com o objetivo de centralizar informações do time e facilitar a busca por conhecimento."
-                       data-en="Development of an internal AI agent aimed at centralizing team information and facilitating knowledge search.">
-                        Desenvolvimento de um agente de IA interno com o objetivo de centralizar informações do time e facilitar a busca por conhecimento.
-                    </p>
-                    <p>
-                        <strong class="lang-text" data-pt="Objetivo:" data-en="Objective:">Objetivo:</strong>
-                        <span class="lang-text"
-                              data-pt="Reduzir o tempo gasto na busca por informações e aumentar a produtividade do time."
-                              data-en="Reduce the time spent searching for information and increase team productivity.">
-                            Reduzir o tempo gasto na busca por informações e aumentar a produtividade do time.
-                        </span>
-                    </p>
-                    <p>
-                        <strong class="lang-text" data-pt="Tecnologias:" data-en="Technologies:">Tecnologias:</strong>
-                        <span class="lang-text"
-                              data-pt="Python, APIs de IA, integração com serviços Cloud (em evolução)."
-                              data-en="Python, AI APIs, Cloud services integration (evolving).">
-                            Python, APIs de IA, integração com serviços Cloud (em evolução).
-                        </span>
-                    </p>
+
+                <div class="projects-grid">
+                    <!-- Projeto 1: AI Knowledge Agent -->
+                    <div class="card project-card">
+                        <h3>AI Knowledge Agent <span class="badge badge-dev lang-text" data-pt="Em desenvolvimento" data-en="In development">Em desenvolvimento</span></h3>
+                        <p class="lang-text"
+                           data-pt="Desenvolvimento de um agente de IA interno com o objetivo de centralizar informações do time e facilitar a busca por conhecimento."
+                           data-en="Development of an internal AI agent aimed at centralizing team information and facilitating knowledge search.">
+                            Desenvolvimento de um agente de IA interno com o objetivo de centralizar informações do time e facilitar a busca por conhecimento.
+                        </p>
+                        <p>
+                            <strong class="lang-text" data-pt="Objetivo:" data-en="Objective:">Objetivo:</strong>
+                            <span class="lang-text"
+                                  data-pt="Reduzir o tempo gasto na busca por informações e aumentar a produtividade do time."
+                                  data-en="Reduce the time spent searching for information and increase team productivity.">
+                                Reduzir o tempo gasto na busca por informações e aumentar a produtividade do time.
+                            </span>
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">LangChain</span>
+                            <span class="tech-tag">OpenAI API</span>
+                            <span class="tech-tag">AWS Lambda</span>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 2: AWS Security Audit Tool -->
+                    <div class="card project-card">
+                        <h3 class="lang-text" data-pt="AWS Security Audit Tool" data-en="AWS Security Audit Tool">AWS Security Audit Tool</h3>
+                        <p class="lang-text"
+                           data-pt="Script automatizado para auditoria de segurança em ambientes AWS, identificando configurações inseguras em IAM, S3, EC2 e Security Groups."
+                           data-en="Automated script for security auditing in AWS environments, identifying insecure configurations in IAM, S3, EC2, and Security Groups.">
+                            Script automatizado para auditoria de segurança em ambientes AWS, identificando configurações inseguras em IAM, S3, EC2 e Security Groups.
+                        </p>
+                        <p>
+                            <strong class="lang-text" data-pt="Funcionalidades:" data-en="Features:">Funcionalidades:</strong>
+                            <span class="lang-text"
+                                  data-pt="Verifica permissões excessivas em IAM roles, buckets S3 públicos, Security Groups abertos, e gera relatório em JSON/HTML."
+                                  data-en="Checks excessive permissions in IAM roles, public S3 buckets, open Security Groups, and generates JSON/HTML reports.">
+                                Verifica permissões excessivas em IAM roles, buckets S3 públicos, Security Groups abertos, e gera relatório em JSON/HTML.
+                            </span>
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Boto3</span>
+                            <span class="tech-tag">AWS IAM</span>
+                            <span class="tech-tag">Security Best Practices</span>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 3: Este Portfólio -->
+                    <div class="card project-card">
+                        <h3 class="lang-text" data-pt="Portfólio Interativo" data-en="Interactive Portfolio">Portfólio Interativo</h3>
+                        <p class="lang-text"
+                           data-pt="Site pessoal desenvolvido do zero com foco em segurança, performance e acessibilidade. Design temático Matrix/terminal refletindo a área de atuação."
+                           data-en="Personal website built from scratch focusing on security, performance, and accessibility. Matrix/terminal themed design reflecting my work area.">
+                            Site pessoal desenvolvido do zero com foco em segurança, performance e acessibilidade. Design temático Matrix/terminal refletindo a área de atuação.
+                        </p>
+                        <p>
+                            <strong class="lang-text" data-pt="Destaques:" data-en="Highlights:">Destaques:</strong>
+                            <span class="lang-text"
+                                  data-pt="Content Security Policy implementado, proteção XSS, WCAG AA compliant, Lighthouse score 95+, sistema bilíngue dinâmico."
+                                  data-en="Implemented Content Security Policy, XSS protection, WCAG AA compliant, Lighthouse score 95+, dynamic bilingual system.">
+                                Content Security Policy implementado, proteção XSS, WCAG AA compliant, Lighthouse score 95+, sistema bilíngue dinâmico.
+                            </span>
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Canvas API</span>
+                        </div>
+                        <a href="https://github.com/GHRApp/Port" target="_blank" rel="noopener noreferrer" class="project-link">
+                            <span class="lang-text" data-pt="Ver Código" data-en="View Code">Ver Código</span> →
+                        </a>
+                    </div>
+
+                    <!-- Projeto 4: CloudWatch Dashboard Automation -->
+                    <div class="card project-card">
+                        <h3 class="lang-text" data-pt="CloudWatch Dashboard Automation" data-en="CloudWatch Dashboard Automation">CloudWatch Dashboard Automation</h3>
+                        <p class="lang-text"
+                           data-pt="Automação para criação e gestão de dashboards CloudWatch, facilitando monitoramento de métricas de segurança em múltiplas contas AWS."
+                           data-en="Automation for creating and managing CloudWatch dashboards, facilitating security metrics monitoring across multiple AWS accounts.">
+                            Automação para criação e gestão de dashboards CloudWatch, facilitando monitoramento de métricas de segurança em múltiplas contas AWS.
+                        </p>
+                        <p>
+                            <strong class="lang-text" data-pt="Resultado:" data-en="Result:">Resultado:</strong>
+                            <span class="lang-text"
+                                  data-pt="Redução de 80% no tempo de setup de monitoring para novos projetos."
+                                  data-en="80% reduction in monitoring setup time for new projects.">
+                                Redução de 80% no tempo de setup de monitoring para novos projetos.
+                            </span>
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">AWS CloudWatch</span>
+                            <span class="tech-tag">AWS Organizations</span>
+                            <span class="tech-tag">Infrastructure as Code</span>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -211,8 +342,58 @@
             <!-- Certificações -->
             <section id="certificacoes" class="content-section" aria-labelledby="cert-title">
                 <h2 id="cert-title" class="lang-text" data-pt="Certificações" data-en="Certifications">Certificações</h2>
-                <div class="card cert-card" style="display: inline-block; padding: 15px 25px;">
-                    <p style="margin: 0; font-weight: bold; color: #fff;">AWS Certified Cloud Practitioner</p>
+
+                <div class="certifications-container">
+                    <div class="card cert-card">
+                        <div class="cert-header">
+                            <img src="assets/aws.png" alt="AWS" class="cert-icon" width="48" height="48">
+                            <div class="cert-info">
+                                <h3>AWS Certified Cloud Practitioner</h3>
+                                <p class="cert-issuer">Amazon Web Services</p>
+                            </div>
+                        </div>
+                        <p class="cert-description lang-text"
+                           data-pt="Certificação fundamental validando conhecimento em conceitos de cloud, serviços AWS, segurança, arquitetura e pricing."
+                           data-en="Foundation certification validating knowledge of cloud concepts, AWS services, security, architecture, and pricing.">
+                            Certificação fundamental validando conhecimento em conceitos de cloud, serviços AWS, segurança, arquitetura e pricing.
+                        </p>
+                        <div class="cert-skills">
+                            <span class="skill-badge">Cloud Concepts</span>
+                            <span class="skill-badge">AWS Services</span>
+                            <span class="skill-badge">Security</span>
+                            <span class="skill-badge">Billing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cert-roadmap">
+                    <h3 class="lang-text" data-pt="🎯 Próximos Passos" data-en="🎯 Next Steps">🎯 Próximos Passos</h3>
+                    <div class="roadmap-grid">
+                        <div class="roadmap-item">
+                            <span class="roadmap-icon">📋</span>
+                            <span class="roadmap-text lang-text"
+                                  data-pt="AWS Certified Solutions Architect - Associate"
+                                  data-en="AWS Certified Solutions Architect - Associate">
+                                AWS Certified Solutions Architect - Associate
+                            </span>
+                        </div>
+                        <div class="roadmap-item">
+                            <span class="roadmap-icon">🔒</span>
+                            <span class="roadmap-text lang-text"
+                                  data-pt="AWS Certified Security - Specialty"
+                                  data-en="AWS Certified Security - Specialty">
+                                AWS Certified Security - Specialty
+                            </span>
+                        </div>
+                        <div class="roadmap-item">
+                            <span class="roadmap-icon">⚙️</span>
+                            <span class="roadmap-text lang-text"
+                                  data-pt="AWS Certified DevOps Engineer - Professional"
+                                  data-en="AWS Certified DevOps Engineer - Professional">
+                                AWS Certified DevOps Engineer - Professional
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </section>
 
